@@ -1,0 +1,67 @@
+export const TAB_DATA = [
+  {
+    id: "belediye",
+    title: "Belediye Hizmetleri",
+    items: [
+      { title: "Hızlı Borç Ödeme", icon: "💳", color: "bg-emerald-50 text-emerald-600", href: "#" },
+      { title: "Su Faturası Ödeme", icon: "💧", color: "bg-blue-50 text-blue-600", href: "#" },
+      { title: "İhale Doğrudan Temin", icon: "📋", color: "bg-indigo-50 text-indigo-600", href: "#" },
+      { title: "İmar Değişiklikleri", icon: "🏗️", color: "bg-amber-50 text-amber-600", href: "#" },
+      { title: "18. Madde İmar Uyg.", icon: "📏", color: "bg-orange-50 text-orange-600", href: "#" },
+      { title: "UKOME Kararları", icon: "🚏", color: "bg-teal-50 text-teal-600", href: "#" },
+      { title: "AYKOME Yönetmelik", icon: "🚧", color: "bg-cyan-50 text-cyan-600", href: "#" },
+      { title: "Vefat Edenler", icon: "🕊️", color: "bg-zinc-100 text-zinc-600", href: "#" },
+      { title: "E-Mezarlık Sistemi", icon: "🪦", color: "bg-slate-100 text-slate-600", href: "#" },
+      { title: "Hal Fiyatları", icon: "🥦", color: "bg-green-50 text-green-600", href: "#" },
+      { title: "İstek Şikayet", icon: "💬", color: "bg-rose-50 text-rose-600", href: "#" },
+      { title: "Kent Rehberi", icon: "🗺️", color: "bg-sky-50 text-sky-600", href: "#" },
+      { title: "Ulusal Kent Rehberi", icon: "🏙️", color: "bg-blue-50 text-blue-600", href: "#" },
+      { title: "TBB Yol Haritası", icon: "📍", color: "bg-amber-50 text-amber-600", href: "#" },
+      { title: "TEMEK Meslek Kursları Başvuru", icon: "🎓", color: "bg-emerald-50 text-emerald-600", href: "#" },
+      { title: "Sosyal Yardım Portalı", icon: "🤝", color: "bg-rose-50 text-rose-600", href: "#" },
+      { title: "Afet Toplanma Alanları", icon: "🚨", color: "bg-orange-50 text-orange-600", href: "#" },
+      { title: "Tekirdağ Kart Bakiye Yükle", icon: "🎫", color: "bg-teal-50 text-teal-600", href: "#" },
+      { title: "Otobüs Sefer Saatleri", icon: "⏱️", color: "bg-indigo-50 text-indigo-600", href: "#" },
+      { title: "Personel A.Ş. İlanları", icon: "📢", color: "bg-sky-50 text-sky-600", href: "#" },
+      { title: "Şehir Tiyatroları", icon: "🎭", color: "bg-purple-50 text-purple-600", href: "#" },
+    ]
+  },
+  {
+    id: "yayinlar",
+    title: "Yayınlar",
+    items: [
+      { title: "E-Bülten Arşivi", icon: "📰", color: "bg-blue-50 text-blue-600", href: "#" },
+      { title: "Kurumsal Kimlik", icon: "👔", color: "bg-indigo-50 text-indigo-600", href: "#" },
+      { title: "Faaliyet Raporları", icon: "📊", color: "bg-emerald-50 text-emerald-600", href: "#" },
+      { title: "Performans Programları", icon: "📈", color: "bg-teal-50 text-teal-600", href: "#" },
+      { title: "Stratejik Plan", icon: "🎯", color: "bg-rose-50 text-rose-600", href: "#" },
+      { title: "Gelir Tarifeleri", icon: "₺", color: "bg-amber-50 text-amber-600", href: "#" },
+      { title: "Katı Atık Toplama ve Bertaraf", icon: "♻️", color: "bg-green-50 text-green-600", href: "#" },
+      { title: "İl İçi Toplu Taşıma Ücret Tarifesi", icon: "🚌", color: "bg-sky-50 text-sky-600", href: "#" },
+      { title: "Harcıraha Esas Taşıma Ücretleri", icon: "🚍", color: "bg-cyan-50 text-cyan-600", href: "#" },
+      { title: "Otopark Yönetmeliği", icon: "🅿️", color: "bg-indigo-50 text-indigo-600", href: "#" },
+      { title: "Kamu Hizmet Standartları", icon: "📄", color: "bg-red-50 text-red-600", href: "#" },
+      { title: "Kurumsal Mali Beklentiler Raporu", icon: "📄", color: "bg-red-50 text-red-600", href: "#" },
+      { title: "Mevzuat", icon: "⚖️", color: "bg-red-50 text-red-600", href: "#" },
+      { title: "İç Kontrol Eylem Planı", icon: "📄", color: "bg-red-50 text-red-600", href: "#" },
+      { title: "Tıbbi Atık Yönetim Planı", icon: "🏥", color: "bg-red-50 text-red-600", href: "#" },
+      { title: "Kurumsal Logo İndir", icon: "📥", color: "bg-red-50 text-red-600", href: "#" },
+    ]
+  },
+  {
+    id: "basvurular",
+    title: "Başvurular ve Diğer Siteler",
+    items: [
+      { title: "Başvuru Formları", icon: "📝", color: "bg-blue-50 text-blue-600", href: "#" },
+      { title: "Büyükşehir TV", icon: "📺", color: "bg-red-50 text-red-600", href: "#" },
+      { title: "Personel A.Ş. İnternet Sitesi", icon: "👥", color: "bg-indigo-50 text-indigo-600", href: "#" },
+      { title: "TEKULAŞ İnternet Sitesi", icon: "🚌", color: "bg-sky-50 text-sky-600", href: "#" },
+      { title: "TESKİ İnternet Sitesi", icon: "💧", color: "bg-cyan-50 text-cyan-600", href: "#" },
+      { title: "Meslek Kursları Başvuru", icon: "🎓", color: "bg-emerald-50 text-emerald-600", href: "#" },
+      { title: "Sosyal Portal", icon: "🤝", color: "bg-rose-50 text-rose-600", href: "#" },
+      { title: "Tekirdağ Afete Hazır", icon: "🚨", color: "bg-orange-50 text-orange-600", href: "#" },
+      { title: "Tekirdağ Şehir Tiyatroları", icon: "🎭", color: "bg-purple-50 text-purple-600", href: "#" },
+      { title: "Sahipsiz Hayvan Geçici Bakımevi", icon: "🐾", color: "bg-amber-50 text-amber-600", href: "#" },
+    ]
+  }
+];
