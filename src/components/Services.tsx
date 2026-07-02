@@ -7,11 +7,14 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const ITEMS_PER_PAGE = 12;
 
+type ServiceTab = (typeof TAB_DATA)[number];
+type ServiceItem = ServiceTab["items"][number];
+
 export default function Services() {
   const [activeTab, setActiveTab] = useState("belediye");
   const [showAll, setShowAll] = useState(false);
 
-  const activeItems =
+  const activeItems: ServiceItem[] =
     TAB_DATA.find((t) => t.id === activeTab)?.items || [];
 
   const visibleItems = showAll

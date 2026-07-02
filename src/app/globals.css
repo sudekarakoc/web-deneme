@@ -8,3 +8,23 @@
     font-weight: 400; /* font-normal, 'Regular' (400) ağırlığına denk gelir */
   }
 }
+
+/* İdari Yapı Şeması Temel Stilleri */
+.schema-list { list-style: none; padding: 0; margin: 0; }
+.schema-dropdown { display: none; padding-left: 20px; border-left: 2px solid #ccc; }
+.is-arrow:hover .schema-dropdown { display: block; } /* Üzerine gelince açılan yapı */
+
+.schema-list li {
+  background: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Genel Sekreterlik ve Daire Başkanlıkları için ayrıştırıcı */
+.schema-footer .col-md-4 {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}

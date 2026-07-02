@@ -17,6 +17,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/kurumsal",
     sub: [
       { label: "Temel Değerler", href: "/kurumsal/temel-degerler" },
+      { label: "İdari Yapı", href: "/kurumsal/idari-yapi" },
       { label: "Politikalar", href: "/kurumsal/politikalar" },
       { label: "Arabuluculuk Komisyonu", href: "/kurumsal/arabuluculuk-komisyonu" },
       { label: "Belediye Meclisi", href: "/kurumsal/belediye-meclisi" },
@@ -84,6 +85,13 @@ export const SITE_DATA: Record<string, any> = {
   kurumsal: {
     title: "Kurumsal",
     pages: [
+
+      {
+      slug: "idari-yapi",
+      title: "İdari Yapı",
+      content: "", // İçeriği boş bırakıyoruz çünkü bileşen çağıracağız
+      },
+
       {
         slug: "temel-degerler",
         title: "Temel Değerler",

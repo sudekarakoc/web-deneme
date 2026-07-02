@@ -1,0 +1,340 @@
+/* --- AĞAÇ KAPSAYICISI --- */
+.orgTree, .orgTree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.orgTree {
+    display: flex;
+    justify-content: center;
+}
+
+/* --- DİKEY DİZİLİM (Alt Alta - Daire Başkanlıkları) --- */
+.verticalList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.verticalList > li {
+    position: relative;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Üstten inen dikey çizgi */
+.verticalList > li::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 25px; background-color: #cbd5e1;
+}
+
+/* En üst kök eleman için çizgileri gizle */
+/* (Yeni Kod) En üst kök eleman için çizgileri gizle ve ORTALA */
+.orgTree > li { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0; 
+}
+.orgTree > li::before { display: none; }
+
+/* --- YATAY DİZİLİM (Yan Yana - Genel Sekreter Yardımcıları) --- */
+.horizontalList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 25px;
+    position: relative;
+}
+
+/* Üst birimden yatay gruba inen ana dikey çizgi */
+.horizontalList::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 25px; background-color: #cbd5e1;
+}
+
+.horizontalList > li {
+    position: relative;
+    padding: 25px 10px 0 10px; /* Kutular arası yatay boşluk */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Yatay bağlantı çizgileri (Sağ ve Sol kollar) */
+.horizontalList > li::before, .horizontalList > li::after {
+    content: ''; position: absolute; top: 0; width: 50%; height: 25px;
+}
+
+.horizontalList > li::before {
+    right: 50%; border-top: 2px solid #cbd5e1;
+}
+
+.horizontalList > li::after {
+    left: 50%; border-top: 2px solid #cbd5e1; border-left: 2px solid #cbd5e1;
+}
+
+/* İlk ve son kutuların bağlantı uçlarını temizle */
+.horizontalList > li:first-child::before { border: 0 none; }
+.horizontalList > li:last-child::after { border: 0 none; }
+.horizontalList > li:last-child::before { border-right: 2px solid #cbd5e1; }
+
+/* --- KUTU TASARIMI --- */
+/* --- KUTU TASARIMI (BÜYÜTÜLMÜŞ VE TIKLANABİLİR) --- */
+/* --- KUTU TASARIMI --- */
+.nodeContent {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    /* İÇ BOŞLUK DEĞİŞTİ: Sağdan ve soldan 50px boşluk bıraktık ki yazı oka çarpmasın */
+    padding: 20px 50px; 
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.4; /* Çok satırlı yazılar için satır aralığını rahatlattık */
+    font-weight: 500;
+    text-align: center;
+    width: 270px; 
+    box-sizing: border-box; /* Padding'in kutuyu ekstra büyütmesini engelledik */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    z-index: 2;
+}
+
+.nodeContent:hover {
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.nodeContent:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+}
+
+.iconContainer {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chevron {
+    border: solid currentcolor;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 5px; /* Oku da biraz büyüttük */
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+/* Açık/Aktif Durum */
+.active > .nodeContent {
+    background-color: #273b5a;
+    color: #ffffff;
+    border-color: #273b5a;
+}
+.active > .nodeContent .chevron {
+    transform: rotate(-135deg);
+    margin-top: 4px;
+}
+
+/* --- 1. SEVİYE: SOLA YASLI ANA DALLANMA (BEYAZ DAİRE BAŞKANLIKLARI İÇİN) --- */
+.leftBranchList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 5px;
+    position: relative;
+    width: 340px; /* Üstteki Genel Sekreter kutusuyla aynı genişlik */
+}
+
+/* Ana kutunun solundan inen omurga çizgisi */
+.leftBranchList::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25px; 
+    width: 2px;
+    height: calc(100% - 25px);
+    background-color: #cbd5e1;
+}
+
+.leftBranchList > li {
+    position: relative;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Alt şubeler alta insin diye */
+    align-items: flex-start;
+}
+
+.leftBranchList > li::before {
+    display: none !important;
+}
+
+/* Dikey çizgiden beyaz kutuya giden yatay bağ */
+.leftBranchList > li::after {
+    content: '';
+    position: absolute;
+    top: 37px; /* Beyaz kutunun dikey ortasına kusursuz hizalama */
+    left: 25px;
+    width: 15px; /* Kutuya uzanır */
+    height: 2px;
+    background-color: #cbd5e1;
+}
+
+/* Beyaz Daire Başkanlığı Kutusu */
+.leftBranchList > li > .nodeContent,
+.leftBranchList > li.active > .nodeContent {
+    margin-left: 40px; /* Çizgiden sağa kaydırma */
+    width: 300px; /* Sığması için daraltıldı (340 - 40) */
+    /* Beyaz tasarım özellikleri orjinal CSS'ten otomatik alınır */
+}
+
+/* Alt şube listesini beyaz kutunun iç hizasına itme */
+.leftBranchList > li > ul {
+    margin-left: 40px;
+    width: 300px;
+}
+
+
+/* --- 2. SEVİYE: SOLA YASLI KAPSÜL DALLANMASI (ŞUBE MÜDÜRLÜKLERİ İÇİN) --- */
+.leafList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 5px;
+    position: relative;
+    width: 100%;
+}
+
+.leafList::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25px; /* Üstteki beyaz kutunun içinden iner */
+    width: 2px;
+    height: calc(100% - 25px);
+    background-color: #cbd5e1;
+}
+
+.leafList > li {
+    position: relative;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.leafList > li::before {
+    display: none !important;
+}
+
+.leafList > li::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    width: 15px; /* Kapsüle kadar uzanır */
+    height: 2px;
+    background-color: #cbd5e1;
+}
+
+/* Koyu Renk Kapsül Şube Kutusu */
+.leafList .nodeContent,
+.leafList .active > .nodeContent {
+    margin-left: 40px; 
+    width: 260px; /* 300 - 40 */
+    background-color: #3b4e60; /* Görseldeki koyu renk */
+    color: #ffffff; 
+    border: none; 
+    border-radius: 30px; /* Kapsül (hap) görünümü */
+    padding: 12px 18px; 
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     /* 'min-height: auto' has compatibility issues on some browsers; use 0 to allow shrinking
+         while preserving intended layout. */
+     min-height: 0;
+}
+
+.leafList .nodeContent:hover {
+    background-color: #2c3e50; 
+    transform: translateY(-2px);
+}
+
+/* --- ALT ŞUBELER İÇİN L-TİPİ KLASÖR DALLANMASI (GÖRSELDEKİ SOLA YASLI YAPI) --- */
+.leafList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    padding-top: 5px;
+    position: relative;
+    /* Üstteki beyaz Başkanlık kutusuyla tam aynı genişlikte (340px) tutuyoruz */
+    width: 340px; 
+}
+
+/* Sol taraftan (Başkanlık kutusunun altından) inen ana omurga çizgisi */
+.leafList::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px; /* Beyaz kutunun sol kenarından 40px içeriden başlar */
+    width: 2px;
+    height: calc(100% - 30px); /* Çizgiyi tam en son kutunun ortasında kesecek ince ayar */
+    background-color: #cbd5e1;
+}
+
+.leafList > li {
+    position: relative;
+    padding-top: 8px; 
+    padding-bottom: 8px; 
+    width: 100%; 
+    display: flex;
+    justify-content: flex-start; 
+}
+
+/* Standart dikey çizgileri gizle */
+.leafList > li::before {
+    display: none !important;
+}
+
+/* Sol dikey çizgiden şube kutusuna uzanan yatay köprü */
+.leafList > li::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 40px; /* Dikey çizginin olduğu yerden başlar */
+    width: 20px; /* Sağa doğru 20px uzanır ve kutuya değer */
+    height: 2px;
+    background-color: #cbd5e1;
+}
+
+/* --- ŞUBE KUTULARI (HAP ŞEKLİ VE FÜME/LACİVERT RENK) TASARIMI --- */
+.leafList .nodeContent,
+.leafList .active > .nodeContent {
+    /* Kutuyu yatay çizginin bittiği yerden başlat (40px sol + 20px çizgi = 60px) */
+    margin-left: 60px; 
+    /* Ana kutuya sağdan kusursuz hizalanması için genişliği 280px yapıyoruz (340-60=280) */
+    width: 280px; 
+    background-color: #3b4e60; /* Görseldeki koyu renk */
+    color: #ffffff; 
+    border: none; 
+    border-radius: 30px; /* Kapsül/hap görünümü */
+    padding: 12px 25px; 
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: auto;
+}
+
+.leafList .nodeContent:hover {
+    background-color: #2c3e50; 
+    transform: translateY(-2px);
+}
