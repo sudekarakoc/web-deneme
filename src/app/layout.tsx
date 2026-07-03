@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
 import ScrollToTopButton from '../components/ScrollToTopButton' // Yukarı çık butonunu import ettik
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   title: 'T.C. Tekirdağ Büyükşehir Belediyesi',
@@ -43,6 +44,9 @@ export default function RootLayout({
         
         {/* İstemci tarafında çalışan butonumuzu en alta ekliyoruz */}
         <ScrollToTopButton />
+
+        {/* Çerez banner'ını ekliyoruz */}
+        <CookieBanner />
         
       </body>
     </html>

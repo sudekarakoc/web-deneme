@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import HizmetlerDuyurularBolumu from "../components/hizmet-duyuru";
 import DashboardWidgets from "@/components/DashboardWidgets";
 import CardSection from "@/components/CardSection";
+import NewsSection from "@/components/NewsSection";
 
 export default async function Home() {
   // Haberler ve renkli görseller için API'den eşzamanlı veri çekiyoruz
@@ -36,67 +37,12 @@ export default async function Home() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-20">
         
         {/* HABERLER BÖLÜMÜ */}
-        <section className="mb-12 md:mb-20 mt-8 md:mt-0">
-          <div className="mb-8 md:mb-10 flex items-end justify-between">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
-                Güncel Haberler
-              </h2>
-              <div className="h-1.5 w-16 bg-[#1B4F8A] mt-3 md:mt-4 rounded-full"></div>
-            </div>
-            <Link
-              href="/haberler"
-              className="hidden sm:flex items-center gap-2 text-sm font-bold text-[#1B4F8A] hover:text-[#0F2D52] hover:underline transition-colors"
-            >
-              Tüm Haberler
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {newsItems.map((item: any) => (
-              <article
-                key={item.id}
-                className="group flex flex-col bg-white border border-zinc-200 rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-[#1B4F8A]/10 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2"
-              >
-                {/* Haber Görseli (API'den gelen renk kodu) */}
-                <div className={`h-40 md:h-48 w-full relative overflow-hidden bg-[#${item.hexColor}]`}>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300"></div>
-                </div>
-
-                {/* Haber İçeriği */}
-                <div className="p-5 md:p-8 flex flex-col flex-1">
-                  <div className="flex items-center gap-3 mb-3 md:mb-4">
-                    <span className="px-3 py-1 bg-[#F0F6FD] text-[#1B4F8A] text-[10px] md:text-xs font-bold rounded-md">
-                      Gündem
-                    </span>
-                    <span className="text-[10px] md:text-xs font-semibold text-zinc-400">
-                      Haziran 2026
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3 line-clamp-2 capitalize group-hover:text-[#1B4F8A] transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-zinc-500 text-sm line-clamp-3 mb-5 md:mb-6 flex-1">
-                    {item.body}
-                  </p>
-
-                  <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center font-bold text-sm text-zinc-900 group-hover:text-[#1B4F8A] transition-colors">
-                    Devamını Oku <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
+        <section className="mb-12 md:mb-20">
+          <NewsSection newsItems={newsItems} />
           {/* Mobil İçin Tüm Haberler Butonu */}
           <div className="mt-6 md:mt-8 flex justify-center sm:hidden">
             <Link
-              href="/haberler"
+              href="/guncel/haberler"
               className="w-full text-center py-3.5 rounded-xl bg-zinc-100 text-zinc-900 font-bold hover:bg-zinc-200 transition-colors"
             >
               Tüm Haberleri Gör

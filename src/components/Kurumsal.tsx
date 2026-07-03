@@ -57,7 +57,6 @@ export default function KurumsalMenu() {
             </Link>
           ))}
         </div>
-        
       </div>
     </div>
   );

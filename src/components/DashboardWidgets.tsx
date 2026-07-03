@@ -91,7 +91,7 @@ export default function DashboardWidgets() {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full bg-slate-50 p-12 min-h-screen">
+    <div ref={containerRef} className="w-full bg-slate-50 p-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="widget-card"><Column title="İlanlar" items={data.ilanlar} Icon={Megaphone} /></div>
         <div className="widget-card"><Column title="İhaleler" items={data.ihaleler} Icon={FileText} /></div>
