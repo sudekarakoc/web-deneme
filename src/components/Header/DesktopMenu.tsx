@@ -1,53 +1,46 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import { NAV_ITEMS } from "@/lib/data";
-import Dropdown from "./Dropdown";
+import MegaDropdown from "./Dropdown";
 
 export default function DesktopMenu({ theme }: { theme: "light" | "dark" }) {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const desktopNavRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (desktopNavRef.current && !desktopNavRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null);
+      // Eğer tıklanan yer menünün dışındaysa kapat
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
-  const handleDesktopMenuClick = (label: string) => {
-    setActiveDropdown(activeDropdown === label ? null : label);
-  };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <div ref={desktopNavRef} className="hidden lg:flex items-center gap-8 ml-auto mr-6">
-      {NAV_ITEMS.map((item) => (
-        <div key={item.label} className="relative">
-          <button
-            onClick={() => handleDesktopMenuClick(item.label)}
-            className={`flex items-center gap-1.5 font-bold text-[15px] transition-colors ${
-              theme === "light"
-                ? activeDropdown === item.label ? "text-white" : "text-white/90 hover:text-white"
-                : activeDropdown === item.label ? "text-[#1B4F8A]" : "text-gray-800 hover:text-[#1B4F8A]"
-            }`}
-          >
-            {item.label}
-            <svg
-              className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === item.label ? "rotate-180" : ""}`}
-              fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
-            </svg>
-          </button>
-          
-          {activeDropdown === item.label && item.sub && (
-            <Dropdown subItems={item.sub} onClose={() => setActiveDropdown(null)} />
-          )}
-        </div>
-      ))}
+    <div ref={menuRef} className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex items-center gap-2 font-bold text-[15px] px-4 py-2 rounded-lg transition-colors ${
+          theme === "light" 
+            ? "text-white hover:bg-white/10" 
+            : "text-gray-800 hover:bg-gray-100"
+        }`}
+      >
+        Menü
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {isOpen && <MegaDropdown items={NAV_ITEMS} onClose={() => setIsOpen(false)} />}
     </div>
   );
 }

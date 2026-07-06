@@ -86,16 +86,17 @@ export const SITE_DATA: Record<string, any> = {
     title: "Kurumsal",
     pages: [
 
-      {
-      slug: "idari-yapi",
-      title: "İdari Yapı",
-      content: "", // İçeriği boş bırakıyoruz çünkü bileşen çağıracağız
-      },
+     
 
       {
         slug: "temel-degerler",
         title: "Temel Değerler",
         content: "<p>Temel değerler içeriği...</p>",
+      },
+      {
+      slug: "idari-yapi",
+      title: "İdari Yapı",
+      content: "", // İçeriği boş bırakıyoruz çünkü bileşen çağıracağız
       },
       {
         slug: "politikalar",
@@ -135,7 +136,7 @@ export const SITE_DATA: Record<string, any> = {
       {
         slug: "banka-hesap-numaralari",
         title: "Banka Hesap Numaraları",
-        content: "<p>Banka hesap bilgileri...</p>",
+        content:"",
       },
     ],
   },

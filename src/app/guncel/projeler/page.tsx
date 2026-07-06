@@ -39,8 +39,8 @@ export default function ProjelerPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Sayfa Başlığı */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-extrabold text-[#1B4F8A] uppercase tracking-wide mb-2">
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#1B4F8A] uppercase tracking-wide mb-2">
             Projelerimiz
           </h1>
           <div className="h-1 w-24 bg-[#7ab536] mx-auto rounded-full"></div>

@@ -1,21 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { TAB_DATA } from "@/lib/servicesData";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const ITEMS_PER_PAGE = 12;
 
-type ServiceTab = (typeof TAB_DATA)[number];
+// TAB_DATA may be an object with multiple arrays (e.g. { hizmetTabs: [...], duyuruTabs: [...] })
+// Use keyof typeof TAB_DATA to index into all possible arrays and get their element type
+// Extract only tab entries that contain items so ServiceItem is correctly inferred.
+type ServiceTab = Extract<
+  (typeof TAB_DATA)[keyof typeof TAB_DATA][number],
+  {
+    id: string;
+    label: string;
+    items: {
+      title: string;
+      icon: ReactNode;
+      color?: string;
+    }[];
+  }
+>;
 type ServiceItem = ServiceTab["items"][number];
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState("belediye");
+  const [activeTab, setActiveTab] = useState<string>("belediye");
   const [showAll, setShowAll] = useState(false);
 
-  const activeItems: ServiceItem[] =
-    TAB_DATA.find((t) => t.id === activeTab)?.items || [];
+  // TAB_DATA is an object with multiple arrays (e.g. { hizmetTabs: [...], duyuruTabs: [...] })
+  // Flatten all tab arrays and assert they match ServiceTab[] so items are available
+  const allTabs: ServiceTab[] = (Object.values(TAB_DATA) as ServiceTab[][]).flat();
+  const activeItems: ServiceItem[] = allTabs.find((tab) => tab.id === activeTab)?.items ?? [];
 
   const visibleItems = showAll
     ? activeItems
@@ -27,7 +43,7 @@ export default function Services() {
 
         {/* TAB */}
         <div className="flex gap-8 border-b border-zinc-200 mb-8 overflow-x-auto pb-3 hide-scrollbar">
-          {TAB_DATA.map((tab) => (
+          {allTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => {
@@ -40,7 +56,7 @@ export default function Services() {
                   : "text-zinc-500 hover:text-zinc-800"
               }`}
             >
-              {tab.title}
+              {tab.label}
 
               {activeTab === tab.id && (
                 <span className="absolute bottom-0 left-0 w-full h-1 bg-[#1B4F8A] rounded-t-full" />
@@ -52,9 +68,8 @@ export default function Services() {
         {/* GRID (TEK VE TEMİZ) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {visibleItems.map((item, index) => (
-            <Link
+            <div
               key={index}
-              href={item.href || "#"}
               className="
                 group
                 bg-white
@@ -87,7 +102,7 @@ export default function Services() {
               <span className="text-[13px] font-semibold text-center text-zinc-600 group-hover:text-[#0F2D52]">
                 {item.title}
               </span>
-            </Link>
+            </div>
           ))}
         </div>
 

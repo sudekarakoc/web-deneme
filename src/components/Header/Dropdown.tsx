@@ -1,27 +1,58 @@
+"use client";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import Link from "next/link";
 
-interface DropdownProps {
-  subItems: { label: string; href: string }[];
-  onClose: () => void;
-}
+export default function MegaDropdown({ items, onClose }: { items: any[], onClose: () => void }) {
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-export default function Dropdown({ subItems, onClose }: DropdownProps) {
+  // Açılış animasyonu
+  useEffect(() => {
+    gsap.fromTo(dropdownRef.current, 
+      { opacity: 0, y: -10 }, 
+      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+    );
+  }, []);
+
+  // Kapanış animasyonu tetikleyicisi
+  const handleClose = (e?: React.MouseEvent) => {
+    // Animasyonu başlat
+    gsap.to(dropdownRef.current, {
+      opacity: 0,
+      y: -10,
+      duration: 0.2,
+      onComplete: () => onClose(), // Animasyon bitince state'i güncelle (menüyü kaldır)
+    });
+  };
+
   return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-64 z-50">
-      {/* Siyah ve şeffaf arka plan yerine beyaz (bg-white) ve şık gölgeli (shadow-xl) yapı */}
-      <div className="bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-        {subItems.map((s) => (
-          <Link
-            key={s.label}
-            href={s.href}
-            // Yazı rengi lacivert yapıldı, hover durumunda arka plan buz mavisi oluyor
-            className="block px-5 py-2.5 text-[14px] text-[#1B4F8A] hover:bg-[#F0F6FD] hover:text-[#0F2D52] transition-all font-medium"
-            onClick={onClose}
-          >
-            {s.label}
-          </Link>
-        ))}
-      </div>
+    <div 
+      ref={dropdownRef}
+      className="absolute top-12 -right-10 w-[800px] bg-white rounded-2xl shadow-2xl p-8 border border-gray-100 grid grid-cols-4 gap-6"
+    >
+      {items.map((category) => (
+        <div key={category.label}>
+          <h3 className="font-bold text-[#1B4F8A] mb-3">{category.label}</h3>
+          <ul className="space-y-2">
+            {category.sub?.map((sub: any) => (
+              <li key={sub.label}>
+                <Link 
+                  href={sub.href} 
+                  onClick={(e) => {
+                    e.preventDefault(); // Sayfa geçişini hemen yapmasın diye
+                    handleClose();
+                    // Küçük bir gecikmeyle yönlendir (animasyonun tamamlanması için)
+                    setTimeout(() => window.location.href = sub.href, 200);
+                  }}
+                  className="text-sm text-gray-600 hover:text-[#1B4F8A] flex items-center transition-colors"
+                >
+                  <span className="mr-2">›</span> {sub.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }

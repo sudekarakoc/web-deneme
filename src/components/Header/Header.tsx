@@ -45,8 +45,14 @@ export default function Header() {
         {/* --- ANA MENÜ --- */}
         <div className="flex items-center justify-between px-6 lg:px-8 py-4 transition-all duration-300">
           <Logo />
+
+          <div className="flex items-center gap-6 ml-auto">
+          {/* Masaüstü Menü bileşenin artık sadece 1 tane "Menü" butonu içermeli */}
           <DesktopMenu theme={theme} />
+          
+          {/* Arama ve diğer aksiyonlar */}
           <HeaderActions theme={theme} />
+        </div>
 
           {/* MOBİL HAMBURGER BUTONU */}
           <button
