@@ -35,7 +35,8 @@ export default function ProjelerPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] pt-28 pb-20">
+    <main className="min-h-screen bg-[#f8fafc] pt-40 pb-20">
+      {/* pt-28 değeri pt-40 olarak değiştirildi. Hâlâ yakınsa pt-48 veya pt-56 yapabilirsin. */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Sayfa Başlığı */}

@@ -6,7 +6,6 @@ export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // localStorage yerine sessionStorage kullanarak oturum bazlı kontrol yapıyoruz
     const consent = sessionStorage.getItem("cookie_consent");
     if (!consent) {
       setIsVisible(true);
@@ -26,52 +25,63 @@ export default function CookieBanner() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-2xl bg-white border border-gray-200 rounded-lg shadow-xl p-4 sm:p-5 z-50">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[95%] sm:max-w-lg bg-white border border-gray-200 rounded-full shadow-2xl pl-5 pr-2 py-2 flex items-center justify-between gap-4 sm:gap-8 z-50">
       
-      {/* Çarpı (Kapatma) Butonu */}
-      <button
-        onClick={handleReject}
-        className="absolute -top-2.5 -right-2.5 flex items-center justify-center w-7 h-7 bg-[#e2e8f0] text-gray-700 rounded-full hover:bg-gray-300 transition-colors shadow-sm"
-        aria-label="Kapat"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-3.5 h-3.5"
+      {/* Metin ve Link Alanı */}
+      <div className="flex flex-col py-1">
+        <span className="text-[#333333] text-xs sm:text-sm font-medium leading-tight">
+          Daha iyi bir deneyim için çerezleri kullanıyoruz.
+        </span>
+        <a 
+          href="/cerez-politikasi" 
+          className="text-[11px] sm:text-xs text-[#666666] hover:text-[#008CCB] underline transition-colors mt-0.5"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-
-      {/* Metin İçeriği */}
-      <p className="text-[#333333] text-xs sm:text-sm leading-relaxed mb-4 pr-2">
-        Size daha iyi hizmet verebilmek amacıyla kişisel verilerinizi mevzuata uygun olarak çerezler
-        aracılığıyla kaydedip işliyoruz. Ayrıntılı bilgiye Çerez Politikası’ndan{" "}
-        <a href="/cerez-politikasi" className="font-bold underline text-black hover:text-gray-700 transition-colors">
-          ulaşabilirsiniz.
+          Daha Fazla Detay
         </a>
-      </p>
+      </div>
 
-      {/* Aksiyon Butonları */}
-      <div className="flex flex-col sm:flex-row justify-end items-center gap-3 sm:gap-4">
+      {/* Aksiyon Butonları (Yuvarlak İkonlar) */}
+      <div className="flex items-center gap-1 shrink-0">
+        
+        {/* Reddet Butonu (Çarpı) */}
         <button
           onClick={handleReject}
-          className="text-[#666666] hover:text-black underline text-xs sm:text-sm font-medium transition-colors"
+          className="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
+          aria-label="Reddet"
+          title="Reddet"
         >
-          Tümünü Reddet
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-4 h-4"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
-        
+
+        {/* Kabul Et Butonu (Tik - Görseldeki gibi ön planda) */}
         <button
           onClick={handleAccept}
-          className="bg-[#008CCB] hover:bg-[#007AB5] text-white px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors w-full sm:w-auto"
+          className="flex items-center justify-center w-10 h-10 bg-[#008CCB] text-white rounded-full hover:bg-[#007AB5] transition-colors shadow-md"
+          aria-label="Kabul Et"
+          title="Kabul Et"
         >
-          Tümünü Kabul Et
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            strokeWidth={2.5} 
+            stroke="currentColor" 
+            className="w-5 h-5"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
         </button>
+
       </div>
-      
     </div>
   );
 }

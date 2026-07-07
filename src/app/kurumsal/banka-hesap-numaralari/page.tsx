@@ -1,7 +1,22 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { SITE_DATA } from "@/lib/data";
 
 export default function BankaHesapNumaralariStaticPage() {
+  const [copiedText, setCopiedText] = useState<string | null>(null);
+
+  // Kopyalama fonksiyonu
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedText(text);
+    // 2 saniye sonra ikonu eski haline çevir
+    setTimeout(() => {
+      setCopiedText(null);
+    }, 2000);
+  };
+
   // Statik sayfa olduğu için kategori ve slug değerlerini sabitliyoruz
   const kategori = "kurumsal";
   const slug = "banka-hesap-numaralari";
@@ -117,7 +132,24 @@ export default function BankaHesapNumaralariStaticPage() {
                         <td className="py-4 px-6 text-sm font-medium text-gray-900">{account.bank}</td>
                         <td className="py-4 px-6 text-sm text-gray-700">{account.branch}</td>
                         <td className="py-4 px-6 text-sm text-[#1B4F8A] font-mono font-medium tracking-tight">
-                          {account.iban}
+                          <div className="flex items-center justify-between gap-4">
+                            <span>{account.iban}</span>
+                            <button
+                              onClick={() => handleCopy(account.iban)}
+                              className="p-1.5 rounded-md text-gray-400 hover:text-[#009FE3] hover:bg-blue-50 transition-all"
+                              title="Kopyala"
+                            >
+                              {copiedText === account.iban ? (
+                                <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              ) : (
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                              )}
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -148,8 +180,25 @@ export default function BankaHesapNumaralariStaticPage() {
                       <td className="py-5 px-6 text-base font-medium text-gray-900 border-r border-gray-100">
                         Namık Kemal Vergi Dairesi
                       </td>
-                      <td className="py-5 px-6 text-lg text-gray-900 font-mono font-bold tracking-widest">
-                        8360015014
+                      <td className="py-5 px-6 text-lg text-[#1B4F8A] font-mono font-bold tracking-widest">
+                        <div className="flex items-center justify-between gap-4">
+                          <span>8360015014</span>
+                          <button
+                            onClick={() => handleCopy("8360015014")}
+                            className="p-1.5 rounded-md text-gray-400 hover:text-[#009FE3] hover:bg-blue-50 transition-all"
+                            title="Kopyala"
+                          >
+                            {copiedText === "8360015014" ? (
+                              <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            ) : (
+                              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
+                            )}
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   </tbody>

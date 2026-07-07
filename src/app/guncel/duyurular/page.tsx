@@ -145,7 +145,7 @@ export default function DuyurularPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-28 pb-20">
+    <main className="min-h-screen bg-slate-50 pt-40 pb-20">
       {/* Container - Responsive padding eklendi */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
         

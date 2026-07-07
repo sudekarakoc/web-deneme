@@ -9,7 +9,6 @@ export default function DesktopMenu({ theme }: { theme: "light" | "dark" }) {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Eğer tıklanan yer menünün dışındaysa kapat
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
@@ -24,20 +23,43 @@ export default function DesktopMenu({ theme }: { theme: "light" | "dark" }) {
     };
   }, [isOpen]);
 
+  // Çizgilerin renk mantığı (Tema değiştiğinde okunabilir olması için)
+  const lineBg = theme === "light" ? "bg-white" : "bg-[#1B4F8A]";
+
   return (
-    <div ref={menuRef} className="relative">
+    <div ref={menuRef} className="hidden lg:flex relative items-center">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 font-bold text-[15px] px-4 py-2 rounded-lg transition-colors ${
+        className={`relative w-10 h-10 flex justify-center items-center rounded-lg transition-colors ${
           theme === "light" 
-            ? "text-white hover:bg-white/10" 
-            : "text-gray-800 hover:bg-gray-100"
+            ? "hover:bg-white/10" 
+            : "hover:bg-gray-100"
         }`}
+        aria-label="Menü"
       >
-        Menü
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        {/* Animasyonlu Hamburger İkonu Konteyneri */}
+        <div className="relative w-6 h-[18px]">
+          {/* Üst Çizgi */}
+          <span 
+            className={`absolute left-0 w-6 h-[2px] rounded-full transition-all duration-300 ease-out ${lineBg} ${
+              isOpen ? "top-[8px] rotate-45" : "top-0"
+            }`} 
+          />
+          
+          {/* Orta Çizgi */}
+          <span 
+            className={`absolute left-0 top-[8px] w-6 h-[2px] rounded-full transition-all duration-300 ease-out ${lineBg} ${
+              isOpen ? "opacity-0 translate-x-3" : "opacity-100"
+            }`} 
+          />
+          
+          {/* Alt Çizgi */}
+          <span 
+            className={`absolute left-0 w-6 h-[2px] rounded-full transition-all duration-300 ease-out ${lineBg} ${
+              isOpen ? "top-[8px] -rotate-45" : "top-[16px]"
+            }`} 
+          />
+        </div>
       </button>
 
       {isOpen && <MegaDropdown items={NAV_ITEMS} onClose={() => setIsOpen(false)} />}

@@ -1,39 +1,44 @@
 import Link from "next/link";
 import { SITE_DATA } from "@/lib/data";
 
-export default function PolitikalarStaticPage() {
+export default function BelediyeMeclisiStaticPage() {
   const kategori = "kurumsal";
-  const slug = "politikalar";
+  const slug = "belediye-meclisi";
   
   const categoryData = SITE_DATA[kategori];
   const currentPage = categoryData?.pages.find((p: any) => p.slug === slug);
 
-  // Politikalar Verisi
   // 'url' kısmına PDF dosya yolunu (örn: /docs/belge.pdf) veya sayfa linkini yazabilirsin.
   // 'target' kısmını PDF'ler için "_blank", normal sayfalar için "_self" yapabilirsin.
-  const politikalar = [
+  const belediyeMeclisi = [
     { 
       id: 1, 
-      title: "Bilgi Güvenliği Politikamız", 
-      url: "/kurumsal/politikalar/bilgi-guvenligi-politikasi", 
+      title: "Meclis Üyeleri Listesi", 
+      url: "/kurumsal/belediye-meclisi/meclis-uyeleri", 
       target: "_self" 
     },
     { 
       id: 2, 
-      title: "Entegre Yönetim Sistemi Kapsamı", 
-      url: "https://www.tekirdag.bel.tr/content/WebSource/file/entegre_yonetim_sistemi_kapsami/kapsam.pdf", 
-      target: "_blank" 
+      title: "Meclis Kararları ve Özetleri", 
+      url: "/kurumsal/belediye-meclisi/meclis-kararlari-ve-ozetleri", 
+      target: "_self" 
     },
     { 
       id: 3, 
-      title: "İnsan Kaynakları Politikamız", 
-      url: "/kurumsal/politikalar/insan-kaynaklari-politikasi", 
+      title: "Meclis Karar Özetleri (PDF)", 
+      url: "/kurumsal/belediye-meclisi/meclis-karar-ozetleri-pdf", 
       target: "_self" 
     },
     { 
       id: 4, 
-      title: "Yönetim Sistemleri Politikamız", 
-      url: "/kurumsal/politikalar/yonetim-sistemleri-politikasi", 
+      title: "Komisyon Üyeleri",
+      url: "/kurumsal/belediye-meclisi/komisyon-uyeleri", 
+      target: "_self" 
+    },
+    { 
+      id: 5, 
+      title: "Komisyon Raporları",
+      url: "/kurumsal/belediye-meclisi/komisyon-raporlari ", 
       target: "_self" 
     }
   ];
@@ -103,13 +108,13 @@ export default function PolitikalarStaticPage() {
             {/* Görseldeki Özel Başlık */}
             <header className="mb-8 border-b border-gray-100 pb-4">
               <h1 className="text-3xl font-extrabold text-[#73B646] uppercase tracking-wide">
-                POLİTİKALAR
+                Belediye Meclisi
               </h1>
             </header>
 
             {/* İndirilebilir / Tıklanabilir Politikalar Listesi */}
             <div className="flex flex-col gap-4">
-              {politikalar.map((item) => (
+              {belediyeMeclisi.map((item) => (
                 <a 
                   key={item.id}
                   href={item.url}
@@ -140,9 +145,9 @@ export default function PolitikalarStaticPage() {
                     stroke="currentColor" 
                     // Rengi ayarlamak için: aktif/hover durumunda mavi, normalde gri
                     className="w-5 h-5 text-[#d1d5db] group-hover:text-[#009FE3] transition-colors duration-200"
-                  >
+                    >
                     <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                  </svg>
+                    </svg>
                   </div>
                 </a>
               ))}

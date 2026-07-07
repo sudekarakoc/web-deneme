@@ -5,6 +5,7 @@ import HizmetlerDuyurularBolumu from "../components/hizmet-duyuru";
 import DashboardWidgets from "@/components/DashboardWidgets";
 import CardSection from "@/components/CardSection";
 import NewsSection from "@/components/NewsSection";
+import PromoBanner from "@/components/PromoBanner";
 
 export default async function Home() {
   // Haberler ve renkli görseller için API'den eşzamanlı veri çekiyoruz
@@ -54,6 +55,7 @@ export default async function Home() {
         {/* Not: Bu bileşenlerin kendi içlerinde responsive olduğundan emin olmalısın */}
         <div className="flex flex-col gap-12 md:gap-20 mb-12 md:mb-20">
           <HizmetlerDuyurularBolumu />
+          <PromoBanner />
           <DashboardWidgets />
           <CardSection />
         </div>
