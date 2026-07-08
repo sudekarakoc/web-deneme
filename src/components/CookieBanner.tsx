@@ -3,29 +3,36 @@
 import { useState, useEffect } from "react";
 
 export default function CookieBanner() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [showBanner, setShowBanner] = useState(false); // Komponentin DOM'da olup olmadığını kontrol eder
+  const [animate, setAnimate] = useState(false); // CSS animasyonunu tetikler
 
   useEffect(() => {
-    const consent = sessionStorage.getItem("cookie_consent");
-    if (!consent) {
-      setIsVisible(true);
-    }
+    // sessionStorage kontrolünü kaldırdık. 
+    // Sayfa her yüklendiğinde doğrudan banner'ı gösteriyoruz.
+    setShowBanner(true);
+    
+    // DOM'a eklendikten kısa bir süre sonra animasyonu başlat
+    const timer = setTimeout(() => setAnimate(true), 50);
+    return () => clearTimeout(timer);
   }, []);
 
-  const handleAccept = () => {
-    sessionStorage.setItem("cookie_consent", "accepted");
-    setIsVisible(false);
+  const handleClose = (action?: "accepted" | "rejected") => {
+    // Hafızaya kaydetme işlemini çıkardık, sadece animasyonla kapatıyoruz.
+    setAnimate(false);
+    
+    // Aksiyon parametresi ileride kullanılabilir.
+    // Animasyon bittikten sonra (500ms) DOM'dan kaldır
+    setTimeout(() => setShowBanner(false), 500);
   };
 
-  const handleReject = () => {
-    sessionStorage.setItem("cookie_consent", "rejected");
-    setIsVisible(false);
-  };
-
-  if (!isVisible) return null;
+  if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[95%] sm:max-w-lg bg-white border border-gray-200 rounded-full shadow-2xl pl-5 pr-2 py-2 flex items-center justify-between gap-4 sm:gap-8 z-50">
+    <div 
+      className={`fixed bottom-6 left-1/2 w-max max-w-[95%] sm:max-w-lg bg-white border border-gray-200 rounded-full shadow-2xl pl-5 pr-2 py-2 flex items-center justify-between gap-4 sm:gap-8 z-50 transition-all duration-500 ease-out transform -translate-x-1/2 
+        ${animate ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"}
+      `}
+    >
       
       {/* Metin ve Link Alanı */}
       <div className="flex flex-col py-1">
@@ -45,7 +52,7 @@ export default function CookieBanner() {
         
         {/* Reddet Butonu (Çarpı) */}
         <button
-          onClick={handleReject}
+          onClick={() => handleClose("rejected")}
           className="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
           aria-label="Reddet"
           title="Reddet"
@@ -62,9 +69,9 @@ export default function CookieBanner() {
           </svg>
         </button>
 
-        {/* Kabul Et Butonu (Tik - Görseldeki gibi ön planda) */}
+        {/* Kabul Et Butonu (Tik) */}
         <button
-          onClick={handleAccept}
+          onClick={() => handleClose("accepted")}
           className="flex items-center justify-center w-10 h-10 bg-[#008CCB] text-white rounded-full hover:bg-[#007AB5] transition-colors shadow-md"
           aria-label="Kabul Et"
           title="Kabul Et"

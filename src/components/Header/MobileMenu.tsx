@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { NAV_ITEMS } from "@/lib/data";
 
-interface MobileMenuProps {
+
+type MobileMenuProps = {
   isOpen: boolean;
   onClose: () => void;
-}
+  onOpenServices: () => void; // EKSİK OLAN SATIR BU, BUNU EKLE
+};
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, onOpenServices }: MobileMenuProps){
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   useEffect(() => {
