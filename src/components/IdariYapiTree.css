@@ -331,7 +331,6 @@
     padding: 12px 25px; 
     font-size: 14px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-height: auto;
 }
 
 .leafList .nodeContent:hover {
