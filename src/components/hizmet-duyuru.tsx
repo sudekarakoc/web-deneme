@@ -200,30 +200,6 @@ function DuyurularWidget() {
   );
 }
 
-// ---------- Scroll Top ----------
-function ScrollToTopButton() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 240);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  if (!visible) return null;
-
-  return (
-    <button
-      type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Sayfanın üstüne dön"
-      className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#0A2540] text-white shadow-lg transition hover:scale-105"
-    >
-      <ChevronUp size={22} />
-    </button>
-  );
-}
-
 // ---------- Main ----------
 export default function HizmetlerDuyurularBolumu() {
   return (
@@ -235,8 +211,6 @@ export default function HizmetlerDuyurularBolumu() {
       <div>
         <DuyurularWidget />
       </div>
-
-      <ScrollToTopButton />
     </section>
   );
 }

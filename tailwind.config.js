@@ -1,24 +1,15 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}"
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",       // App Router kullanıyorsanız
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",     // Pages Router kullanıyorsanız
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",// Ayrı bir components klasörünüz varsa
+    
+    // Eğer projeyi kurarken "src" dizini seçtiyseniz (Yukarıdakilere ek olarak veya tek başına):
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        primary: "#0F2D52"
-      }
-    },
-  },
-  plugins: [],
-
-    theme: {
-    extend: {
-      fontFamily: {
-        // 'sans' varsayılan font grubudur. Onu SF Pro yapıyoruz.
-        sans: ['var(--font-sf-pro)', 'sans-serif'], 
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }
