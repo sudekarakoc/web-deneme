@@ -1,15 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",       // App Router kullanıyorsanız
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",     // Pages Router kullanıyorsanız
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",// Ayrı bir components klasörünüz varsa
-    
-    // Eğer projeyi kurarken "src" dizini seçtiyseniz (Yukarıdakilere ek olarak veya tek başına):
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    // Eğer projende src klasörü varsa buraları tarayacak:
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-sf-pro)', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

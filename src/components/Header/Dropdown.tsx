@@ -3,13 +3,24 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 
+type DropdownSubItem = {
+  label: string;
+  href: string;
+};
+
+type DropdownCategory = {
+  label: string;
+  href?: string;
+  sub?: DropdownSubItem[];
+};
+
 export default function MegaDropdown({ 
   items, 
   onClose, 
   onOpenServices 
 }: { 
-  items: any[], 
-  onClose: () => void,
+  items: DropdownCategory[]; 
+  onClose: () => void;
   onOpenServices: (category: string) => void 
 }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -39,7 +50,7 @@ export default function MegaDropdown({
           </h3>
           
           <ul className="space-y-3">
-            {category.sub?.slice(0, 7).map((sub: any) => (
+            {category.sub?.slice(0, 7).map((sub: DropdownSubItem) => (
               <li key={sub.label}>
                 <Link 
                   href={sub.href} 

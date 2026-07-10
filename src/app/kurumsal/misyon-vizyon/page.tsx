@@ -1,18 +1,21 @@
 import Link from "next/link";
 import { SITE_DATA } from "@/lib/data";
 
+type Page = { slug: string; title: string };
+type CategoryData = { title: string; pages: Page[] };
+
 export default function MisyonVizyonStaticPage() {
   const kategori = "kurumsal";
   const slug = "misyon-vizyon";
   
-  const categoryData = SITE_DATA[kategori];
-  const currentPage = categoryData?.pages.find((p: any) => p.slug === slug);
+  const categoryData = SITE_DATA[kategori] as CategoryData | undefined;
+  const currentPage = categoryData?.pages.find((p) => p.slug === slug);
 
   return (
     <main className="min-h-screen bg-[#f8f9fa] font-sans">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb */}
@@ -45,7 +48,7 @@ export default function MisyonVizyonStaticPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: any) => {
+              {categoryData?.pages.map((p: Page) => {
                 const isActive = p.slug === slug;
                 return (
                   <li key={p.slug}>

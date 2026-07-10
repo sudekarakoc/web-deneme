@@ -144,6 +144,7 @@ export default function HeroSlider() {
                     src={slide.image}
                     alt={slide.title}
                     fill
+                    unoptimized
                     className="object-cover"
                     priority={index === 0}
                   />

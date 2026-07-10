@@ -16,7 +16,7 @@ export default function GuncelPage() {
     <main className="min-h-screen bg-[#f8f9fa]">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           <div className="flex flex-wrap items-center gap-1.5 text-sm text-gray-600 font-medium tracking-wide">

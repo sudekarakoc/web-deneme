@@ -10,7 +10,7 @@ export default function YonetimSistemleriPolitikasiPage() {
     <main className="min-h-screen bg-[#f8f9fa] font-sans">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-1.5 text-sm text-gray-600 font-medium tracking-wide">
             <Link href="/" className="hover:text-[#1B4F8A] transition-colors duration-200">Anasayfa</Link>
@@ -36,7 +36,7 @@ export default function YonetimSistemleriPolitikasiPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: any) => (
+              {categoryData?.pages.map((p: { slug: string; title: string }) => (
                 <li key={p.slug}>
                   <Link href={`/${kategori}/${p.slug}`} className={`block px-6 py-3 text-[15px] transition-colors border-l-4 ${p.slug === sidebarActiveSlug ? "font-medium text-[#009FE3] bg-[#EAF4E2]/30 border-[#73B646]" : "text-gray-600 hover:text-[#009FE3] hover:bg-gray-50 border-transparent"}`}>
                     {p.title}

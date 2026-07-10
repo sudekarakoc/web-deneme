@@ -4,6 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { SITE_DATA } from "@/lib/data";
 
+type SitePage = {
+  slug: string;
+  title: string;
+  [key: string]: unknown;
+};
+
 export default function MeclisUyeleriPage() {
   // Statik sayfa ayarları
   const kategori = "kurumsal";
@@ -11,7 +17,7 @@ export default function MeclisUyeleriPage() {
   
   const categoryData = SITE_DATA[kategori];
   // Eğer verilerinde "meclis-uyeleri" yoksa fallback olarak boş obje veya varsayılan değer atanır
-  const currentPage = categoryData?.pages?.find((p: any) => p.slug === slug) || { title: "Meclis Üyeleri" };
+  const currentPage = categoryData?.pages?.find((p: SitePage) => p.slug === slug) || { title: "Meclis Üyeleri" };
 
   // Meclis Üyeleri Örnek Verisi (Gerçek verilerle çoğaltabilirsin)
   const councilMembers = [
@@ -29,7 +35,7 @@ export default function MeclisUyeleriPage() {
     <main className="min-h-screen bg-[#f8f9fa] font-sans">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb */}
@@ -74,7 +80,7 @@ export default function MeclisUyeleriPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages?.map((p: any) => {
+              {categoryData?.pages?.map((p: SitePage) => {
                 const isActive = p.slug === slug;
                 return (
                   <li key={p.slug}>

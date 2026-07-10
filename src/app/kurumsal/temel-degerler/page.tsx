@@ -1,13 +1,23 @@
 import Link from "next/link";
 import { SITE_DATA } from "@/lib/data";
 
+interface PageItem {
+  slug: string;
+  title: string;
+}
+
+interface CategoryData {
+  title: string;
+  pages: PageItem[];
+}
+
 export default function TemelDegerlerPage() {
   // Bu sayfa spesifik olduğu için kategori ve slug değerlerini sabitliyoruz
   const kategori = "kurumsal";
   const slug = "temel-degerler";
   
-  const categoryData = SITE_DATA[kategori];
-  const currentPage = categoryData?.pages.find((p: any) => p.slug === slug);
+  const categoryData = SITE_DATA[kategori] as CategoryData;
+  const currentPage = categoryData?.pages.find((p) => p.slug === slug);
 
   // Animasyonsuz, statik temel değerler listesi
   const degerler = [
@@ -24,7 +34,7 @@ export default function TemelDegerlerPage() {
     <main className="min-h-screen bg-[#f8f9fa]">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI (LOGOYLA UYUMLU) --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb */}
@@ -67,7 +77,7 @@ export default function TemelDegerlerPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: any) => {
+              {categoryData?.pages.map((p: PageItem) => {
                 const isActive = p.slug === slug;
                 return (
                   <li key={p.slug}>

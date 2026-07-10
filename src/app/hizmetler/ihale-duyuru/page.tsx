@@ -5,6 +5,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE_DATA } from "@/lib/data";
 
+type Page = {
+  slug: string;
+  title: string;
+};
+
 import { tenders } from './data/tenders';
 import Filters from './components/Filters';
 import TenderTable from './components/TenderTable';
@@ -20,7 +25,8 @@ export default function IhaleDuyuruPage() {
   const categoryData = SITE_DATA[kategori];
   if (!categoryData) return notFound(); 
 
-  const currentPage = categoryData.pages.find((p: any) => p.slug === slug);
+  const pages = categoryData.pages as Page[];
+  const currentPage = pages.find((p) => p.slug === slug);
   if (!currentPage) return notFound(); 
 
   const handleToggleRow = (id: number) => {
@@ -36,7 +42,7 @@ export default function IhaleDuyuruPage() {
     <main className="min-h-screen bg-[#f8f9fa]">
       
       {/* BREADCRUMB / HEADER */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-1.5 text-sm text-gray-600 font-medium tracking-wide">
             <Link href="/" className="hover:text-[#1B4F8A] transition-colors duration-200">Anasayfa</Link>
@@ -59,7 +65,7 @@ export default function IhaleDuyuruPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData.pages.map((p: any) => {
+              {pages.map((p) => {
                 const isActive = p.slug === slug;
                 return (
                   <li key={p.slug}>

@@ -5,8 +5,10 @@ export default function EtikKomisyonuStaticPage() {
   const kategori = "kurumsal";
   const slug = "etik-komisyonu";
   
-  const categoryData = SITE_DATA[kategori];
-  const currentPage = categoryData?.pages.find((p: any) => p.slug === slug);
+  type Page = { slug: string; title: string };
+  type CategoryData = { title: string; pages: Page[] };
+  const categoryData = SITE_DATA[kategori] as CategoryData | undefined;
+  const currentPage = categoryData?.pages.find((p) => p.slug === slug);
 
   // Etik İlkeler Verisi (JSX'i temiz tutmak için diziye alındı)
   const etikIlkeler = [
@@ -47,7 +49,7 @@ export default function EtikKomisyonuStaticPage() {
     <main className="min-h-screen bg-[#f8f9fa] font-sans">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb */}
@@ -80,7 +82,7 @@ export default function EtikKomisyonuStaticPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: any) => {
+              {categoryData?.pages.map((p: Page) => {
                 const isActive = p.slug === slug;
                 return (
                   <li key={p.slug}>

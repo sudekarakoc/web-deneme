@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function SocialIcons({ theme }: { theme: "light" | "dark" }) {
   const iconClass = theme === "light" 
     ? "text-white/80 hover:text-white" 
-    : "text-gray-500 hover:text-[#1B4F8A]";
+    : "text-[#1B4F8A] hover:text-[#1B4F8A]";
 
   return (
     <div className={`flex items-center gap-4 ml-2 h-4 ${iconClass}`}>

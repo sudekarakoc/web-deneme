@@ -1,18 +1,28 @@
 import Link from "next/link";
 import { SITE_DATA } from "@/lib/data";
 
+type PageData = {
+  slug: string;
+  title: string;
+};
+
+type CategoryData = {
+  title?: string;
+  pages: PageData[];
+};
+
 export default function ArabuluculukKomisyonuPage() {
   const kategori = "kurumsal";
   const slug = "arabuluculuk-komisyonu";
   
-  const categoryData = SITE_DATA[kategori];
-  const currentPage = categoryData?.pages.find((p: any) => p.slug === slug);
+  const categoryData = SITE_DATA[kategori] as CategoryData | undefined;
+  const currentPage = categoryData?.pages.find((p) => p.slug === slug);
 
   return (
     <main className="min-h-screen bg-[#f8f9fa] font-sans">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb */}
@@ -45,7 +55,7 @@ export default function ArabuluculukKomisyonuPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: any) => {
+              {categoryData?.pages.map((p: PageData) => {
                 const isActive = p.slug === slug;
                 return (
                   <li key={p.slug}>
@@ -96,7 +106,7 @@ export default function ArabuluculukKomisyonuPage() {
                 6325 sayılı Kanunun 15 inci maddesinin sekizinci fıkrasına istinaden Başkanlık Makamından alınan onay ile arabuluculuk müzakerelerinde idareyi temsil etmek üzere <strong>Arabuluculuk Komisyonları</strong> oluşturulmuştur.
               </p>
               <p>
-                02.06.2018 tarih ve 30439 sayılı Resmi Gazetede yayımlanarak yürürlüğe giren Hukuk Uyuşmazlıklarında Arabuluculuk Kanun Yönetmeliğinin 18 inci maddesinin 2 nci fıkrası <em>"İdare, arabuluculuk davetlerinin yapılacağı adres, kayıtlı elektronik posta adresi ve telefon numarasını, bu Yönetmeliğin yürürlüğe girdiği tarihten itibaren bir ay içerisinde internet sitesinde yayınlar. Arabulucular görüşmeler kapsamında yapacakları davetlerde öncelikle bu bilgileri esas alır."</em> düzenlemesini içermektedir.
+                02.06.2018 tarih ve 30439 sayılı Resmi Gazetede yayımlanarak yürürlüğe giren Hukuk Uyuşmazlıklarında Arabuluculuk Kanun Yönetmeliğinin 18 inci maddesinin 2 nci fıkrası <em>İdare, arabuluculuk davetlerinin yapılacağı adres, kayıtlı elektronik posta adresi ve telefon numarasını, bu Yönetmeliğin yürürlüğe girdiği tarihten itibaren bir ay içerisinde internet sitesinde yayınlar. Arabulucular görüşmeler kapsamında yapacakları davetlerde öncelikle bu bilgileri esas alır.</em> düzenlemesini içermektedir.
               </p>
               <p>
                 Zorunlu Arabuluculuk Komisyonlarının sekretarya hizmetleri; <strong>1. HUKUK MÜŞAVİRLİĞİ</strong> tarafından yürütülmektedir. Yukarıda açıklanan mevzuat hükümleri doğrultusunda internet sitesinde bulunan bilgilerin güncellenme zorunluluğu doğmuştur.

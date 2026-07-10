@@ -12,7 +12,7 @@ export default function InsanKaynaklariPolitikasiPage() {
     <main className="min-h-screen bg-[#f8f9fa] font-sans">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb - Hiyerarşiye 'Politikalar' Eklendi */}
@@ -49,7 +49,7 @@ export default function InsanKaynaklariPolitikasiPage() {
               </Link>
             </div>
             <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: any) => {
+              {categoryData?.pages.map((p: { slug: string; title: string }) => {
                 const isActive = p.slug === sidebarActiveSlug; // Politikalar sekmesi aktif görünecek
                 return (
                   <li key={p.slug}>
@@ -121,7 +121,7 @@ export default function InsanKaynaklariPolitikasiPage() {
                   
                   <div className="bg-white p-6 rounded-xl border-l-4 border-[#009FE3] shadow-sm mt-6">
                     <p className="m-0 italic text-gray-800">
-                      "Karşılıklı güvenin sağlandığı, sorumlulukların sahiplenildiği, başarının takdir edildiği, çeşitliliğe saygı duyulan, iş ve özel yaşam dengesinin gözetildiği, beklentilerin dikkate alındığı bir çalışma ortamı sağlamayı taahhüt ederiz."
+                      Karşılıklı güvenin sağlandığı, sorumlulukların sahiplenildiği, başarının takdir edildiği, çeşitliliğe saygı duyulan, iş ve özel yaşam dengesinin gözetildiği, beklentilerin dikkate alındığı bir çalışma ortamı sağlamayı taahhüt ederiz.
                     </p>
                   </div>
                 </div>
