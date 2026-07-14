@@ -88,7 +88,7 @@ export default function CardSection() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-6 pt-4 pb-20">
+    <section className="mx-auto max-w-7xl px-6 pt-4 pb-4">
       <h2 className="mb-10 text-3xl font-light">
         Tekirdağ Büyükşehir Belediyesi
       </h2>

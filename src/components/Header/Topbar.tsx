@@ -5,7 +5,6 @@ import Image from "next/image";
 export default function Topbar({ isScrolled, theme }: { isScrolled: boolean; theme: "light" | "dark" }) {
   const textColor = theme === "light" ? "text-white/90" : "text-[#1B4F8A]";
   const hoverColor = theme === "light" ? "hover:text-white" : "hover:text-[#1B4F8A]";
-  const borderColor = theme === "light" ? "bg-white/20" : "bg-gray-400";
 
   return (
     <>
@@ -30,7 +29,7 @@ export default function Topbar({ isScrolled, theme }: { isScrolled: boolean; the
       <div className="flex items-center gap-4 ml-8">
         
         {/* Kadın Dostu Kentler */}
-        <Link href="https://www.kadindostukentler.org/" className="hover:scale-105 transition-transform flex items-center">
+        <Link href="https://www.kadindostukentler.org/" className="hover:scale-105 transition-transform flex items-center" target="_blank">
           <Image 
             src="https://static.wixstatic.com/media/5c9bb9_d609f239a97e46739f88d9cd7e34c773~mv2.png/v1/crop/x_0,y_419,w_4338,h_2825/fill/w_215,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/wfc%20logo%20sar%C4%B1%20lamba%20final-08.png"
             alt="Kadın Dostu Kentler" 
@@ -42,7 +41,7 @@ export default function Topbar({ isScrolled, theme }: { isScrolled: boolean; the
         </Link>
 
         {/* Söz Verdik Yaptık */}
-        <Link href="https://www.tekirdag.bel.tr/candanbelediyecilik/" className="hover:scale-105 transition-transform flex items-center">
+        <Link href="https://www.tekirdag.bel.tr/candanbelediyecilik/" className="hover:scale-105 transition-transform flex items-center" target="_blank">
           <Image 
             src="https://www.tekirdag.bel.tr/assets/2025/img/sozverdik.png"
             alt="Söz Verdik Yaptık" 

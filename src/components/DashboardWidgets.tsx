@@ -1,8 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ComponentType } from "react";
 import gsap from "gsap";
 import { Megaphone, FileText, Calendar } from "lucide-react";
+
+interface DashboardItem {
+  id: number;
+  title: string;
+  date: string;
+  url: string;
+}
+
+type DashboardIcon = ComponentType<{
+  size?: number;
+  strokeWidth?: number;
+  className?: string;
+}>;
 
 // Verilere link property'si eklendi
 const data = {
@@ -29,7 +42,7 @@ const data = {
   ],
 };
 
-function Column({ title, items, Icon }: { title: string; items: any[]; Icon: any }) {
+function Column({ title, items, Icon }: { title: string; items: DashboardItem[]; Icon: DashboardIcon }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => {
@@ -91,7 +104,7 @@ export default function DashboardWidgets() {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full bg-slate-50 p-12">
+    <div ref={containerRef} className="w-full bg-slate-50 p-2">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="widget-card"><Column title="İlanlar" items={data.ilanlar} Icon={Megaphone} /></div>
         <div className="widget-card"><Column title="İhaleler" items={data.ihaleler} Icon={FileText} /></div>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ChevronUp, type LucideIcon } from "lucide-react";
+import { useState } from "react";
+import { type LucideIcon } from "lucide-react";
 import { TAB_DATA } from "@/lib/servicesData";
 
 // ---------- Renkler ----------
@@ -203,7 +203,7 @@ function DuyurularWidget() {
 // ---------- Main ----------
 export default function HizmetlerDuyurularBolumu() {
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-10 lg:grid-cols-3">
+    <section className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-2 lg:grid-cols-3">
       <div className="lg:col-span-2">
         <HizmetlerWidget />
       </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE_DATA } from "@/lib/data";
 
 export default function InsanKaynaklariPolitikasiPage() {
@@ -87,9 +88,11 @@ export default function InsanKaynaklariPolitikasiPage() {
 
             {/* İnsan Kaynakları Görseli */}
             <div className="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
-              <img 
-                src="https://www.tekirdag.bel.tr/assets/img/sayfa/ik_politikamiz.jpg" 
-                alt="İnsan Kaynakları Politikamız" 
+              <Image
+                src="https://www.tekirdag.bel.tr/assets/img/sayfa/ik_politikamiz.jpg"
+                alt="İnsan Kaynakları Politikamız"
+                width={1200}
+                height={700}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
               />
             </div>

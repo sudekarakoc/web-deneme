@@ -8,19 +8,21 @@ import { IDARI_YAPI_DATA } from "@/lib/idariYapiData";
 export default async function DynamicPage({ params }: { params: Promise<{ kategori: string; slug: string }> }) {
   const resolvedParams = await params;
   const { kategori, slug } = resolvedParams;
-  const IdariYapiComponent = IdariYapi as ComponentType<{ node: any }>;
+  // avoid using `any` to satisfy eslint rule: @typescript-eslint/no-explicit-any
+  const IdariYapiComponent = IdariYapi as ComponentType<{ node: unknown }>;
 
-  const categoryData = SITE_DATA[kategori];
-  if (!categoryData) return notFound(); 
+  type Page = { slug: string; title: string; content?: string };
+  const categoryData = SITE_DATA[kategori] as { title: string; pages: Page[] } | undefined;
+  if (!categoryData) return notFound();
 
-  const currentPage = categoryData.pages.find((p: any) => p.slug === slug);
+  const currentPage = categoryData.pages.find((p: Page) => p.slug === slug);
   if (!currentPage) return notFound(); 
 
   return (
     <main className="min-h-screen bg-[#f8f9fa]">
       
       {/* --- İÇ SAYFA BAŞLIK ALANI (LOGOYLA UYUMLU) --- */}
-      <div className="w-full bg-[#EAF4E2] pt-[115px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
+      <div className="w-full bg-[#EAF4E2] pt-[150px] pb-5 px-6 lg:px-8 border-b border-[#73B646]/20">
         <div className="max-w-7xl mx-auto flex flex-col gap-2">
           
           {/* Breadcrumb - Tıklanabilir Yapıya Dönüştürüldü */}
@@ -65,7 +67,7 @@ export default async function DynamicPage({ params }: { params: Promise<{ katego
                 </Link>
               </div>
               <ul className="flex flex-col py-2">
-                {categoryData.pages.map((p: any) => {
+                {categoryData.pages.map((p: Page) => {
                   const isActive = p.slug === slug;
                   return (
                     <li key={p.slug}>
@@ -96,7 +98,7 @@ export default async function DynamicPage({ params }: { params: Promise<{ katego
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 lg:p-12">
               <div 
                 className="prose prose-lg max-w-none text-gray-700 prose-a:text-[#009FE3] prose-headings:text-[#009FE3]"
-                dangerouslySetInnerHTML={{ __html: currentPage.content }} 
+                dangerouslySetInnerHTML={{ __html: currentPage.content ?? "" }}
               />
             </div>
           )}

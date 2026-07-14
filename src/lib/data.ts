@@ -19,6 +19,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/kurumsal",
     sub: [
       { label: "Temel Değerler", href: "/kurumsal/temel-degerler" },
+      { label: "Başkanımız", href: "/kurumsal/baskan"},
       { label: "İdari Yapı", href: "/kurumsal/idari-yapi" },
       { label: "Politikalar", href: "/kurumsal/politikalar" },
       { label: "Arabuluculuk Komisyonu", href: "/kurumsal/arabuluculuk-komisyonu" },
@@ -117,11 +118,22 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 
+export type SiteDataPage = {
+  slug: string;
+  title: string;
+  content: string;
+};
+
+export type SiteDataEntry = {
+  title: string;
+  pages: SiteDataPage[];
+};
+
 export const getNavItems = () => {
   return Object.keys(SITE_DATA).map((key) => ({
     label: SITE_DATA[key].title, // SITE_DATA'da title olarak geçiyor
     href: `/${key}`, // URL'yi anahtardan (key) üretiyoruz
-    sub: SITE_DATA[key].pages.map((p: any) => ({
+    sub: SITE_DATA[key].pages.map((p: SiteDataPage) => ({
       label: p.title,
       href: `/${key}/${p.slug}`
     }))
@@ -129,13 +141,18 @@ export const getNavItems = () => {
 };
 
 
-export const SITE_DATA: Record<string, any> = {
+export const SITE_DATA: Record<string, SiteDataEntry> = {
   kurumsal: {
     title: "Kurumsal",
     pages: [
       {
         slug: "temel-degerler",
         title: "Temel Değerler",
+        content: "<p>Temel değerler içeriği...</p>",
+      },
+      {
+        slug: "baskan",
+        title: "Başkanımız",
         content: "<p>Temel değerler içeriği...</p>",
       },
       {

@@ -50,7 +50,7 @@ export default function MegaDropdown({
           </h3>
           
           <ul className="space-y-3">
-            {category.sub?.slice(0, 7).map((sub: DropdownSubItem) => (
+            {category.sub?.slice(0, 11).map((sub: DropdownSubItem) => (
               <li key={sub.label}>
                 <Link 
                   href={sub.href} 

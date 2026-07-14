@@ -12,21 +12,25 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
+// YENİ: Slaytlara 'type' (video veya image) ve 'src' özellikleri eklendi
 const SLIDES = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2070&auto=format&fit=crop", 
+    type: "video", // Bu slayt bir video olarak çalışacak
+    src: "https://www.w3schools.com/html/mov_bbb.mp4", // Buraya ileride "/tekirdag-tanitim.mp4" yazacaksın
     title: "Mavi Gözlü Şehir Tekirdağ",
     description: "Trakya'nın incisinde yaşam kalitesini artıracak projelerle hizmetinizdeyiz.",
   },
   {
     id: 2,
+    type: "image",
     image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2070&auto=format&fit=crop", 
     title: "Sürdürülebilir Tarım ve Çevre",
     description: "Gelecek nesillere daha yeşil bir Tekirdağ bırakmak için çalışıyoruz.",
   },
   {
     id: 3,
+    type: "image",
     image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop", 
     title: "Modern Şehircilik Anlayışı",
     description: "Altyapıdan üstyapıya, yenilikçi çözümlerle şehrimizi geleceğe taşıyoruz.",
@@ -89,7 +93,6 @@ export default function HeroSlider() {
 
   return (
     <>
-      {/* YENİ: Slayt Metinleri İçin Kusursuz CSS Animasyonu */}
       <style>{`
         .hero-text-anim {
           opacity: 0;
@@ -118,7 +121,7 @@ export default function HeroSlider() {
           modules={[Pagination, Autoplay, EffectFade, Navigation]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
-          watchSlidesProgress={true} // YENİ: Kaydırma sırasında sınıfların kopmasını engeller
+          watchSlidesProgress={true}
           pagination={{
             clickable: true,
             renderBullet: (index, className) => {
@@ -129,7 +132,8 @@ export default function HeroSlider() {
             prevEl: ".ozel-sol-buton",
             nextEl: ".ozel-sag-buton",
           }}
-          autoplay={{ delay: 6000, disableOnInteraction: false }}
+          // Otomatik geçiş süresini biraz uzatabilirsin (örn: 8000), video daha uzun izlenebilsin diye
+          autoplay={{ delay: 8000, disableOnInteraction: false }}
           loop
           className="w-full h-full"
         >
@@ -140,14 +144,28 @@ export default function HeroSlider() {
             <SwiperSlide key={slide.id}>
               <div className="absolute inset-0 overflow-hidden">
                 <div className="w-full h-full transition-transform duration-[10000ms] ease-out scale-100 [.swiper-slide-active_&]:scale-110 [.swiper-slide-duplicate-active_&]:scale-110">
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    priority={index === 0}
-                  />
+                  
+                  {/* YENİ: Slayt tipine göre Video veya Resim Yükleme Mantığı */}
+                  {slide.type === "video" ? (
+                    <video
+                      src={slide.src}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <Image
+                      src={slide.image!}
+                      alt={slide.title}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                  )}
+
                 </div>
               </div>
 
@@ -203,7 +221,6 @@ export default function HeroSlider() {
                         return (
                           <div
                             key={idx}
-                            // Üzerine gelince arka plan tamamen yeşil, yazılar tamamen beyaz olacak
                             className="group flex items-center gap-3 px-3 py-2.5 text-gray-700 hover:text-white hover:bg-[#73B646] rounded-md cursor-pointer transition-all duration-200 text-[14px] font-medium"
                             onMouseDown={(e) => {
                               e.preventDefault();
@@ -211,14 +228,12 @@ export default function HeroSlider() {
                               handleSearch(item.label);
                             }}
                           >
-                            {/* İkon normalde yeşil, üstüne gelince beyaza dönüyor */}
                             <div className="text-[#73B646] group-hover:text-white transition-colors duration-200 flex-shrink-0">
                               <IconComponent size={20} strokeWidth={2} />
                             </div>
                             
                             <span className="flex-1">{item.label}</span>
 
-                            {/* Üzerine gelince sağdan beliren küçük ok - tıklanabilirliği kesinleştirir */}
                             <div className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0">
                               <ChevronRight size={18} strokeWidth={2.5} />
                             </div>
@@ -229,7 +244,7 @@ export default function HeroSlider() {
                   </div>
                 </div>
 
-                {/* SAĞ - METİN ALANI (Sınıflar Keyframe'e Bağlandı) */}
+                {/* SAĞ - METİN ALANI */}
                 <div className="w-full md:w-7/12 flex flex-col items-center md:items-end text-center md:text-right order-1 md:order-2">
                   <h1 className="hero-text-anim delay-title text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-wide drop-shadow-md leading-tight">
                     {slide.title}

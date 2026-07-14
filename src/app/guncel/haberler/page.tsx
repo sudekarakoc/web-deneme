@@ -15,7 +15,7 @@ async function getNewsItems() {
 
   const brandColors = ["1B4F8A", "2E8B57", "D97706", "4B5563", "0F766E", "B45309"];
 
-  return posts.map((post: any, index: number) => ({
+  return posts.map((post: { id: number; title: string; body: string }, index: number) => ({
     id: post.id,
     title: post.title,
     body: post.body,

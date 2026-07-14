@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { SITE_DATA } from "@/lib/data";
 
 type SitePage = {
@@ -61,7 +60,7 @@ export default function MeclisUyeleriPage() {
                 
                 {/* Aktif Sayfa (Meclis Üyeleri) */}
                 <span className="text-[#009FE3] font-bold">
-                    Meclis Üyeleri
+                    {currentPage.title}
                 </span>
             </div>
 

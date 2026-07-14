@@ -12,13 +12,13 @@ export default async function Home() {
 
   return (
     // @apply hatası düzeltildi, standart Tailwind sınıfları eklendi
-    <main className="min-h-screen bg-zinc-50 font-sans font-normal antialiased pb-10 md:pb-16">
+    <main className="min-h-screen bg-zinc-50 font-sans font-normal antialiased pb-10 md:pb-16 overflow-x-hidden">
       {/* 2. TAM EKRAN RENKLİ SLAYT */}
       <HeroSlider />
 
       {/* 4. DİĞER İÇERİKLER */}
       {/* Mobilde px-4, tablet ve sonrasında px-6/px-8 */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-20">
+      <div className="mx-auto sm:px-6 lg:px-8 pt-12 md:pt-20">
         
         {/* HABERLER BÖLÜMÜ */}
         <section className="mb-12 md:mb-20">
@@ -35,10 +35,18 @@ export default async function Home() {
         </section>
 
         {/* BİLEŞENLER */}
-        {/* Not: Bu bileşenlerin kendi içlerinde responsive olduğundan emin olmalısın */}
-        <div className="flex flex-col gap-12 md:gap-20 mb-12 md:mb-20">
+        <div className="flex flex-col gap-12 md:gap-20 mb-12 md:mb-20"> 
+          
+          {/* 
+            PROMO BANNER
+            Yeri değiştirilmedi. Üstteki div'den gelen sm:px-6 ve lg:px-8 boşluklarını
+            kırmak ve ekranın kenarlarına tam yapışmak (0 boşluk) için negatif margin eklendi.
+          */}
+          <div className="sm:-mx-6 lg:-mx-8">
+            <PromoBanner />
+          </div>
+
           <HizmetlerDuyurularBolumu />
-          <PromoBanner />
           <DashboardWidgets />
           <CardSection />
         </div>

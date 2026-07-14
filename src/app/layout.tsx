@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 }
 
 const sfPro = localFont({
-  src: './fonts/sf-pro-display-regular.woff2', // İndirdiğin dosyanın adıyla birebir aynı olmalı
-  variable: '--font-sf-pro', // Tailwind için özel bir değişken oluşturuyoruz
+  src: './fonts/sf-pro-display-regular.woff2',
+  variable: '--font-sf-pro',
   weight: '400',
   style: 'normal',
 });

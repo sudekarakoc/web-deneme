@@ -5,14 +5,14 @@
 @layer base {
   body {
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-weight: 400; /* font-normal, 'Regular' (400) ağırlığına denk gelir */
+    font-weight: 400;
   }
 }
 
 /* İdari Yapı Şeması Temel Stilleri */
 .schema-list { list-style: none; padding: 0; margin: 0; }
 .schema-dropdown { display: none; padding-left: 20px; border-left: 2px solid #ccc; }
-.is-arrow:hover .schema-dropdown { display: block; } /* Üzerine gelince açılan yapı */
+.is-arrow:hover .schema-dropdown { display: block; }
 
 .schema-list li {
   background: #fff;

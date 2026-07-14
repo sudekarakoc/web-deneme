@@ -94,7 +94,7 @@ export default function NewsSection() {
   const activeNews = featuredNewsList[currentIndex];
 
   return (
-    <section ref={sectionRef} className="w-full max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white select-none">
+    <section ref={sectionRef} className="w-full max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8 bg-white select-none">
       
       {/* Çizgi Şeklinde Pagination için Özel CSS */}
       <style dangerouslySetInnerHTML={{__html: `
