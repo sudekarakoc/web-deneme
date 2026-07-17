@@ -11,15 +11,11 @@ const ITEMS_PER_PAGE = 12;
 // Use keyof typeof TAB_DATA to index into all possible arrays and get their element type
 // Extract only tab entries that contain items so ServiceItem is correctly inferred.
 type ServiceTab = Extract<
-  (typeof TAB_DATA)[keyof typeof TAB_DATA][number],
+  (typeof TAB_DATA)["hizmetTabs"][number],
   {
     id: string;
     label: string;
-    items: {
-      title: string;
-      icon: ReactNode;
-      color?: string;
-    }[];
+    items: any[];
   }
 >;
 type ServiceItem = ServiceTab["items"][number];
@@ -28,9 +24,8 @@ export default function Services() {
   const [activeTab, setActiveTab] = useState<string>("belediye");
   const [showAll, setShowAll] = useState(false);
 
-  // TAB_DATA is an object with multiple arrays (e.g. { hizmetTabs: [...], duyuruTabs: [...] })
-  // Flatten all tab arrays and assert they match ServiceTab[] so items are available
-  const allTabs: ServiceTab[] = (Object.values(TAB_DATA) as ServiceTab[][]).flat();
+  // TAB_DATA.hizmetTabs kullanıyoruz, çünkü sadece hizmetler sekmesinde ikonlu yapı var
+  const allTabs: ServiceTab[] = TAB_DATA.hizmetTabs;
   const activeItems: ServiceItem[] = allTabs.find((tab) => tab.id === activeTab)?.items ?? [];
 
   const visibleItems = showAll
@@ -93,14 +88,14 @@ export default function Services() {
                   transition-colors duration-300
                   group-hover:bg-[#1B4F8A]
                   group-hover:text-white
-                  ${item.color}
+                  ${(item as any).color || ""}
                 `}
               >
-                {item.icon}
+                {item.Icon && <item.Icon className="w-6 h-6" />}
               </div>
 
               <span className="text-[13px] font-semibold text-center text-zinc-600 group-hover:text-[#0F2D52]">
-                {item.title}
+                {item.label}
               </span>
             </div>
           ))}

@@ -30,6 +30,7 @@ interface HizmetItem {
   id: string;
   label: string;
   Icon: LucideIcon;
+  href?: string;
 }
 
 interface HizmetTab {
@@ -42,6 +43,7 @@ interface DuyuruItem {
   id: string;
   title: string;
   date: string;
+  href?: string;
 }
 
 interface DuyuruTab {
@@ -113,7 +115,9 @@ function HizmetlerWidget() {
               return (
                 <a
                   key={item.id}
-                  href="#"
+                  href={item.href || "#"}
+                  target={item.href?.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="group flex flex-col items-center gap-2 text-center"
                 >
                   <span
@@ -178,7 +182,7 @@ function DuyurularWidget() {
                 style={{ background: COLORS.accentBar }}
               />
 
-              <a href="#" className="flex-1">
+              <a href={item.href || "#"} className="flex-1">
                 <p
                   className="text-[13.5px] font-bold hover:underline"
                   style={{ color: COLORS.navyDeep }}

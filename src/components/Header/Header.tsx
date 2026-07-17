@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation"; 
+import Link from "next/link";
 import gsap from "gsap";
 import Logo from "./Logo";
 import TopBar from "./Topbar";
@@ -38,6 +39,25 @@ export default function Header() {
       { y: -100, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
     );
+  }, []);
+
+  // E-İşlemler Menüsü Açma Eventi
+  useEffect(() => {
+    const handleOpenEIslemler = () => setIsEIslemlerOpen(true);
+    window.addEventListener("open-e-islemler", handleOpenEIslemler);
+    return () => window.removeEventListener("open-e-islemler", handleOpenEIslemler);
+  }, []);
+
+  // Hizmetler/Yayınlar Modalı Açma Eventi
+  useEffect(() => {
+    const handleOpenServices = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const tab = customEvent.detail?.tab || "Hizmetler";
+      setActiveModalTab(tab);
+      setIsServicesPopupOpen(true);
+    };
+    window.addEventListener("open-services", handleOpenServices);
+    return () => window.removeEventListener("open-services", handleOpenServices);
   }, []);
 
   // ARKA PLAN MANTIĞI:
@@ -77,17 +97,19 @@ export default function Header() {
             />
           </div>
 
-          {/* MOBİL E-İŞLEMLER BUTONU */}
-          <button
-            onClick={() => setIsEIslemlerOpen(true)}
-            className={`lg:hidden ml-auto px-3 py-1.5 text-[12px] font-bold rounded-lg shadow-sm active:scale-95 transition-all mr-4 ${
-              theme === "light"
-                ? "bg-white text-[#0F2D52]"
-                : "bg-[#0F2D52] text-white"
-            }`}
-          >
-            E-İşlemler
-          </button>
+          {/* MOBİL HIZLI ERİŞİM BUTONLARI */}
+          <div className="lg:hidden ml-auto flex items-center gap-2 mr-4">
+            <button
+              onClick={() => setIsEIslemlerOpen(true)}
+              className={`px-3 py-1.5 text-[12px] font-bold rounded-lg shadow-sm active:scale-95 transition-all ${
+                theme === "light"
+                  ? "bg-white text-[#0F2D52]"
+                  : "bg-[#0F2D52] text-white"
+              }`}
+            >
+              E-İşlemler
+            </button>
+          </div>
 
           {/* MOBİL HAMBURGER BUTONU */}
           <div className="lg:hidden">

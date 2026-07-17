@@ -149,7 +149,21 @@ export default function ServicesModal({
                   <Link
                     key={sIndex}
                     href={service.href || "#"}
-                    onClick={handleClose}
+                    target={service.href?.startsWith("http") ? "_blank" : undefined}
+                    rel={service.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                    onClick={(e) => {
+                      if (service.href === "#e-islemler") {
+                        e.preventDefault();
+                        window.dispatchEvent(
+                          new CustomEvent("open-e-islemler", {
+                            detail: { expandedItem: "Başvuru Formları" },
+                          })
+                        );
+                        handleClose();
+                      } else {
+                        handleClose();
+                      }
+                    }}
                     className="group flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/10 shadow-sm hover:bg-white/10 hover:shadow-lg hover:border-white/20 backdrop-blur-md transition-all duration-300"
                   >
                     <div className="flex items-center gap-3">

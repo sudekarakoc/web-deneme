@@ -49,7 +49,7 @@ export default function HalFiyatlariPage() {
               Günlük Hal Fiyatları
             </h1>
             <p className="text-[#3a7d1e] text-[16px] md:text-[18px] leading-relaxed font-medium">
-              Tekirdağ Büyükşehir Belediyesi'ne ait toptancı hallerindeki günlük meyve ve sebze fiyatlarını takip edebilirsiniz.
+              Tekirdağ Büyükşehir Belediyesi&apos;ne ait toptancı hallerindeki günlük meyve ve sebze fiyatlarını takip edebilirsiniz.
             </p>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function HalFiyatlariPage() {
             <div className="relative">
               <select
                 value={selectedHal}
-                onChange={(e) => setSelectedHal(e.target.value as any)}
+                onChange={(e) => setSelectedHal(e.target.value as "suleymanpasa" | "corlu" | "all")}
                 className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-[15px] font-semibold rounded-xl px-4 py-3.5 appearance-none focus:outline-none focus:ring-2 focus:ring-[#009FE3]/50 focus:border-[#009FE3]"
               >
                 <option value="all">Tüm Haller</option>

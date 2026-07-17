@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE_DATA } from "@/lib/data";
+import Sidebar from "@/components/Sidebar";
 
 export default function YonetimSistemleriPolitikasiPage() {
   const kategori = "kurumsal";
@@ -28,24 +29,12 @@ export default function YonetimSistemleriPolitikasiPage() {
       <section className="max-w-7xl mx-auto w-full px-6 lg:px-8 py-12 flex flex-col lg:flex-row gap-10">
         
         {/* YAN MENÜ */}
-        <aside className="w-full lg:w-1/4 shrink-0 order-2 lg:order-1">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden sticky top-[160px]">
-            <div className="bg-gray-50 border-b border-gray-100 px-6 py-4">
-              <Link href={`/${kategori}`}>
-                <h3 className="font-bold text-[18px] text-[#009FE3]">{categoryData?.title}</h3>
-              </Link>
-            </div>
-            <ul className="flex flex-col py-2">
-              {categoryData?.pages.map((p: { slug: string; title: string }) => (
-                <li key={p.slug}>
-                  <Link href={`/${kategori}/${p.slug}`} className={`block px-6 py-3 text-[15px] transition-colors border-l-4 ${p.slug === sidebarActiveSlug ? "font-medium text-[#009FE3] bg-[#EAF4E2]/30 border-[#73B646]" : "text-gray-600 hover:text-[#009FE3] hover:bg-gray-50 border-transparent"}`}>
-                    {p.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+        <Sidebar
+          kategori={kategori}
+          categoryTitle={categoryData?.title || ""}
+          pages={categoryData?.pages || []}
+          activeSlug={sidebarActiveSlug}
+        />
 
         {/* İÇERİK */}
         <article className="w-full lg:w-3/4 order-1 lg:order-2">

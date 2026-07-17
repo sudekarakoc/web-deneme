@@ -46,14 +46,28 @@ export default function Footer() {
           <div>
             <h3 className="text-[#1B4F8A] font-bold text-lg mb-6 tracking-wide">KURUMSAL</h3>
             <ul className="space-y-3">
-              {KURUMSAL.map((item, i) => (
-                <li key={i}>
-                  <Link href="#" className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors"></span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {KURUMSAL.map((item, i) => {
+                let href = "#";
+                if (item === "İletişim Bilgileri") href = "/iletisim";
+                else if (item === "Temel Değerler") href = "/kurumsal/temel-degerler";
+                else if (item === "Misyon / Vizyon") href = "/kurumsal/misyon-vizyon";
+                else if (item === "Politikalar") href = "/kurumsal/politikalar";
+                else if (item === "Eski Başkanlarımız") href = "/kurumsal/eski-baskanlarimiz";
+                else if (item === "Belediye Meclisi") href = "/kurumsal/belediye-meclisi";
+                else if (item === "Belediye Encümeni") href = "/kurumsal/belediye-encumeni";
+                else if (item === "Arabuluculuk Komisyonu") href = "/kurumsal/arabuluculuk-komisyonu";
+                else if (item === "Etik Komisyonu") href = "/kurumsal/etik-komisyonu";
+                else if (item === "Banka Hesap Numaraları") href = "/kurumsal/banka-hesap-numaralari";
+                
+                return (
+                  <li key={i}>
+                    <Link href={href} className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors"></span>
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -61,14 +75,25 @@ export default function Footer() {
           <div>
             <h3 className="text-[#1B4F8A] font-bold text-lg mb-6 tracking-wide">HİZMETLERİMİZ</h3>
             <ul className="space-y-3">
-              {HIZMETLERIMIZ.map((item, i) => (
-                <li key={i}>
-                  <Link href="#" className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors"></span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {HIZMETLERIMIZ.map((item, i) => {
+                let href = "#";
+                if (item === "İmar Değişiklikleri") href = "/hizmetler/imar-degisiklikleri";
+                else if (item === "İhale ve Doğrudan Teminler") href = "/hizmetler/ihale-duyuru";
+                else if (item === "18.Madde İmar Uygulaması") href = "/hizmetler/18-madde-imar-uygulamasi";
+                else if (item === "Güncel Hal Fiyatları") href = "/hizmetler/hal-fiyatlari";
+                else if (item === "Ukome") href = "/hizmetler/ukome";
+                else if (item === "Aykome") href = "/hizmetler/aykome";
+                else if (item === "Kent Estetik Kurulu") href = "/hizmetler/kent-estetik-kurulu-kararlari";
+                
+                return (
+                  <li key={i}>
+                    <Link href={href} className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors"></span>
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -76,14 +101,22 @@ export default function Footer() {
           <div>
             <h3 className="text-[#1B4F8A] font-bold text-lg mb-6 tracking-wide">E-İŞLEM</h3>
             <ul className="space-y-3">
-              {E_ISLEM.map((item, i) => (
-                <li key={i}>
-                  <Link href="#" className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors"></span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {E_ISLEM.map((item, i) => {
+                let href = "#";
+                if (item === "Hızlı Borç Öde") href = "https://ebelediye.tekirdag.bel.tr";
+                else if (item === "Su Faturası Öde") href = "https://www.teski.gov.tr/sube/index.aspx";
+                else if (item === "Kent Rehberi") href = "https://harita.tekirdag.bel.tr/kentrehberi/";
+                else if (item === "E-Mezarlık") href = "https://emezarlik.tekirdag.bel.tr/";
+                
+                return (
+                  <li key={i}>
+                    <Link href={href} className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors" target={href.startsWith("http") ? "_blank" : undefined}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors"></span>
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -91,14 +124,22 @@ export default function Footer() {
           <div>
             <h3 className="text-[#1B4F8A] font-bold text-lg mb-6 tracking-wide">DİĞER BAĞLANTILAR</h3>
             <ul className="space-y-3">
-              {DIGER_BAGLANTILAR.map((item, i) => (
-                <li key={i}>
-                  <Link href="#" className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors line-clamp-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors shrink-0"></span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {DIGER_BAGLANTILAR.map((item, i) => {
+                let href = "#";
+                if (item === "Cimer") href = "https://www.cimer.gov.tr/";
+                else if (item === "Marmara Belediyeler Birliği") href = "https://www.marmara.gov.tr/";
+                else if (item === "Trakya Belediyeler Birliği") href = "https://www.trakyakent.gov.tr/";
+                else if (item === "Türkiye Belediyeler Birliği") href = "https://www.tbb.gov.tr/Tr/";
+                
+                return (
+                  <li key={i}>
+                    <Link href={href} className="group flex items-center text-[14px] text-zinc-600 hover:text-[#1B4F8A] transition-colors line-clamp-1" target={href.startsWith("http") ? "_blank" : undefined}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-[#1B4F8A] mr-3 transition-colors shrink-0"></span>
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -121,7 +162,7 @@ export default function Footer() {
       </div>
 
       {/* ALT ÇUBUK (Dark Blue Bar) */}
-      <div className="bg-[#1B4F8A]/90 py-5 relative">
+      <div className="bg-[#0F2D52] py-5 relative">
         <div className="max-w-[1300px] mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between text-white/90 text-sm">
           
           {/* Telif Hakkı */}

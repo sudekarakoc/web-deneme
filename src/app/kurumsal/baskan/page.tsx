@@ -119,9 +119,11 @@ export default function BelediyeBaskaniSayfasi() {
               TEKİRDAĞ BÜYÜKŞEHİR BELEDİYE BAŞKANI
             </h2>
             
-            <button className="hero-text mt-10 bg-white border-l-4 border-green-500 text-gray-700 font-bold py-4 px-8 shadow-lg hover:shadow-xl transition-shadow flex items-center gap-2">
-              YÖNETİM ŞEMASI
-            </button>
+            <div className="hero-text mt-10">
+              <Link href="/kurumsal/idari-yapi" className="inline-flex bg-white hover:bg-[#73B646] border-l-4 border-[#73B646] text-gray-700 hover:text-white font-bold py-4 px-8 shadow-lg hover:shadow-xl transition-all duration-300 items-center gap-2">
+                YÖNETİM ŞEMASI
+              </Link>
+            </div>
           </div>
 
           {/* Sağ Portre Görseli */}

@@ -16,8 +16,8 @@ export default function Topbar({ isScrolled, theme }: { isScrolled: boolean; the
       {/* SOL/ORTA KISIM: E-Bülten, E-Posta ve Sosyal İkonlar */}
       <div className="flex ml-auto items-center gap-4 lg:gap-6 h-full py-0.5">
         <div className={`flex items-center gap-4 font-bold text-[14px] tracking-wide ${textColor}`}>
-          <Link href="#" className={`transition-colors ${hoverColor}`}>E-BÜLTEN</Link>
-          <Link href="#" className={`transition-colors ${hoverColor}`}>E-POSTA</Link>
+          <Link href="/yayinlar/e-bulten" className={`transition-colors ${hoverColor}`}>E-BÜLTEN</Link>
+          <Link href="/iletisim" className={`transition-colors ${hoverColor}`}>E-POSTA</Link>
         </div>
         <div className="flex items-center gap-4 lg:gap-6">
           <SocialIcons theme={theme} />
@@ -43,7 +43,7 @@ export default function Topbar({ isScrolled, theme }: { isScrolled: boolean; the
         {/* Söz Verdik Yaptık */}
         <Link href="https://www.tekirdag.bel.tr/candanbelediyecilik/" className="hover:scale-105 transition-transform flex items-center" target="_blank">
           <Image 
-            src="https://www.tekirdag.bel.tr/assets/2025/img/sozverdik.png"
+            src="/images/sozverdik.png"
             alt="Söz Verdik Yaptık" 
             width={150}
             height={70} 
@@ -55,7 +55,7 @@ export default function Topbar({ isScrolled, theme }: { isScrolled: boolean; the
         {/* Türk Bayrağı / Atatürk */}
         <div className="flex items-center ml-2">
           <Image 
-            src="https://www.tekirdag.bel.tr/assets/2025/img/bayrak.png"
+            src="/images/bayrak.png"
             alt="Türk Bayrağı ve Atatürk" 
             width={150}
             height={80} 

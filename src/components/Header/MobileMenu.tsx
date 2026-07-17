@@ -86,7 +86,21 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps){
                         <Link
                           key={subIndex}
                           href={subItem.href}
-                          onClick={onClose}
+                          target={subItem.href?.startsWith("http") ? "_blank" : undefined}
+                          rel={subItem.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                          onClick={(e) => {
+                            if (subItem.href === "#e-islemler") {
+                              e.preventDefault();
+                              window.dispatchEvent(
+                                new CustomEvent("open-e-islemler", {
+                                  detail: { expandedItem: "Başvuru Formları" },
+                                })
+                              );
+                              onClose();
+                            } else {
+                              onClose();
+                            }
+                          }}
                           className="block px-10 py-3 text-sm text-gray-600 hover:text-[#1B4F8A] transition-colors border-b border-gray-100 last:border-0"
                         >
                           {subItem.label}

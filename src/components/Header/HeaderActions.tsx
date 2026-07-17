@@ -1,6 +1,7 @@
 "use client";
 
 import SearchBar from "./SearchBar";
+import Link from "next/link";
 
 interface HeaderActionsProps {
   theme?: "light" | "dark";
@@ -11,7 +12,8 @@ export default function HeaderActions({ theme = "light", onOpenEIslemler }: Head
   return (
     <div className="hidden lg:flex items-center gap-3 shrink-0">
       <SearchBar theme={theme} />
-      
+
+
       <button 
         onClick={onOpenEIslemler}
         aria-label="E-İşlemler Menüsünü Aç"

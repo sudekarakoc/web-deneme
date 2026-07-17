@@ -48,7 +48,12 @@ export default function KurumsalMenu() {
         {/* Menü Grid Yapısı */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {menuItems.map((item, idx) => (
-            <Link key={item.href ?? item.label ?? idx} href={item.href ?? '#'}>
+            <Link 
+              key={item.href ?? item.label ?? idx} 
+              href={item.href ?? '#'}
+              target={item.href?.startsWith("http") ? "_blank" : undefined}
+              rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+            >
               <div className="menu-card group bg-white dark:bg-gray-800 flex items-center h-20 px-6 shadow-sm hover:shadow-md transition-all duration-300 border-l-[6px] border-[#8dc63f] rounded-r-md cursor-pointer hover:translate-x-1">
                 <span className="font-semibold text-gray-600 dark:text-gray-200 group-hover:text-[#8dc63f] transition-colors duration-200 uppercase text-sm tracking-wide">
                   {item.label}

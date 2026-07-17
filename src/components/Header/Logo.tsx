@@ -12,7 +12,7 @@ export default function Logo({ theme = "dark" }: LogoProps) {
       {/* 1. AMBLEM (Hep aynı renk kalır) */}
       <div className="h-10 w-auto flex items-center">
         <Image 
-          src="https://www.tekirdag.bel.tr/assets/2025/img/logo.png" 
+          src="/images/logo.png" 
           alt="Tekirdağ Büyükşehir Belediyesi Amblem"
           width={50} 
           height={50} 
@@ -25,7 +25,7 @@ export default function Logo({ theme = "dark" }: LogoProps) {
       {/* 2. YAZI (Tema light ise beyaz, dark ise kendi koyu rengi) */}
       <div className="h-8 w-auto items-center hidden sm:flex">
         <Image 
-          src="https://www.tekirdag.bel.tr/assets/2025/img/logo-text.png" 
+          src="/images/logo-text.png" 
           alt="Tekirdağ Büyükşehir Belediyesi Yazı" 
           width={140} 
           height={20}  

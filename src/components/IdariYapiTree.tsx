@@ -13,32 +13,31 @@ const checkDefaultOpen = (node: OrgNode) => {
 const TreeNode = ({ node, level = 0 }: { node: OrgNode, level?: number }) => {
   const [isOpen, setIsOpen] = useState(() => checkDefaultOpen(node));
   
-  const hasChildren = node.children && node.children.length > 0;
+  const hasChildren = node.children && node.children.length > 0 && node.children.some(child => child.title && child.title.trim() !== '');
   
   // Bu birimin altındakiler en alt şube mi?
   const isLeafGroup = hasChildren && node.children!.every(child => !child.children || child.children.length === 0);
   
   const childLayout = node.layout || 'vertical';
 
-  // YENİ MANTIK: Hangi CSS listesinin kullanılacağına karar veriyoruz
+  // YENİ MANTIK: Sadece en alt şubeler L-tipi (leafList) olacak. Diğer tüm üst/orta menüler ortalı (verticalList) kalacak.
   let listClass = 'verticalList';
   
   if (childLayout === 'horizontal') {
     listClass = 'horizontalList';
   } else if (isLeafGroup) {
-    // Alt şubeler (Müdürlükler) her zaman koyu kapsül listesi olacak
+    // Sadece şube müdürlükleri gibi en alt kollar kapsül ve L-tipi olacak
     listClass = 'leafList';
-  } else if (level === 1 && node.title.includes('Genel Sekreter')) {
-    // Genel Sekreter'e doğrudan bağlı Başkanlıklar için yeni eklediğimiz "Beyaz Kutu Sola Yaslı" yapı
-    listClass = 'leftBranchList';
   }
 
   const showChevron = hasChildren && node.title.includes('Başkanlığı');
 
+  const isEmptyNode = !node.title || node.title.trim() === '';
+
   return (
-    <li className={isOpen ? 'active' : ''}>
+    <li className={`${isOpen ? 'active' : ''} ${isEmptyNode ? 'empty-node' : ''}`}>
       <div 
-        className="nodeContent" 
+        className={`nodeContent level-${level} ${node.id === 'baskan' ? 'node-baskan' : ''} ${node.id === 'genel-sekreter' ? 'node-genel-sekreter' : ''}`}
         onClick={() => hasChildren && setIsOpen(!isOpen)}
       >
         <span>{node.title}</span>

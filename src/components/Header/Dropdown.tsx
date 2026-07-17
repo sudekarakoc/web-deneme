@@ -35,11 +35,11 @@ export default function MegaDropdown({
   return (
     <div 
       ref={dropdownRef}
-      className="absolute top-12 -right-10 w-[800px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_40px_rgb(0,0,0,0.08)] p-10 border border-gray-100/50 grid grid-cols-4 gap-8"
+      className="absolute top-12 -right-10 w-[800px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_40px_rgb(0,0,0,0.08)] pt-7 pb-6 px-8 border border-gray-100/50 grid grid-cols-4 gap-8"
     >
       {items.map((category) => (
         <div key={category.label}>
-          <h3 className="mb-4">
+          <h3 className="mb-2.5">
             <Link 
               href={category.href || "#"} 
               onClick={onClose} 
@@ -49,8 +49,8 @@ export default function MegaDropdown({
             </Link>
           </h3>
           
-          <ul className="space-y-3">
-            {category.sub?.slice(0, 11).map((sub: DropdownSubItem) => (
+          <ul className="space-y-1.5">
+            {category.sub?.slice(0, 12).map((sub: DropdownSubItem) => (
               <li key={sub.label}>
                 <Link 
                   href={sub.href} 

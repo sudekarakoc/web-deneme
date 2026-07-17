@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function CozumMerkeziBanner() {
   return (
-    <div className="flex flex-col-reverse md:flex-row w-full bg-[#0F2D52] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl mb-10 group">
+    <div className="flex flex-col-reverse md:flex-row w-full bg-[#0F2D52] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group">
 
       {/* SOL TARAF: Metin ve Butonlar */}
       <div className="flex-1 p-8 md:p-12 flex flex-col justify-center relative">
@@ -42,7 +42,7 @@ export default function CozumMerkeziBanner() {
       {/* Görselin arka planı beyaz yapıldı ki içindeki kırmızı "ALO 153" yazıları patlasın ve net okunsun */}
       <div className="relative w-full md:w-1/2 min-h-[200px] sm:min-h-[250px] md:min-h-full overflow-hidden bg-white flex items-center justify-center p-4 md:p-8">
         <Image
-          src="https://tekirdag.bel.tr/assets/2025/img/cozum.png"
+          src="/images/cozum.png"
           alt="Tekirdağ Çözüm Merkezi"
           fill
           className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 p-6"

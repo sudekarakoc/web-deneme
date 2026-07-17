@@ -5,6 +5,7 @@ import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
 import ScrollToTopButton from '../components/ScrollToTopButton' // Yukarı çık butonunu import ettik
 import CookieBanner from '@/components/CookieBanner';
+import MobileBottomNav from '@/components/MobileBottomNav';
 
 export const metadata: Metadata = {
   title: 'T.C. Tekirdağ Büyükşehir Belediyesi',
@@ -21,10 +22,24 @@ export const metadata: Metadata = {
 }
 
 const sfPro = localFont({
-  src: './fonts/sf-pro-display-regular.woff2',
+  src: [
+    {
+      path: './fonts/sf-pro-display-regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/sf-pro-display-medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/sf-pro-display-bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   variable: '--font-sf-pro',
-  weight: '400',
-  style: 'normal',
 });
 
 export default function RootLayout({
@@ -38,12 +53,15 @@ export default function RootLayout({
         
         <Header />
         
-        <main>{children}</main>
+        <div id="app-content">{children}</div>
         
         <Footer />
         
         {/* İstemci tarafında çalışan butonumuzu en alta ekliyoruz */}
         <ScrollToTopButton />
+        
+        {/* Mobilde kaydırınca çıkan alt menü */}
+        <MobileBottomNav />
 
         {/* Çerez banner'ını ekliyoruz */}
         <CookieBanner />
